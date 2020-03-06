@@ -3,12 +3,12 @@
  * Constants for colours used in discord embedded messages.
  */
 
-import { colour } from '../types/colour'
+import { Colour } from '../types/Colour'
 
-export const red: colour = 0xE74C3C
-export const orange: colour = 0xF39C12
-export const yellow: colour = 0xF1C40F
-export const green: colour = 0x2ECC71
-export const blue: colour = 0x3498DB
-export const grey: colour = 0x34495E
-export const purple: colour = 0x9932CC
+export const red: Colour = 0xE74C3C
+export const orange: Colour = 0xF39C12
+export const yellow: Colour = 0xF1C40F
+export const green: Colour = 0x2ECC71
+export const blue: Colour = 0x3498DB
+export const grey: Colour = 0x34495E
+export const purple: Colour = 0x9932CC

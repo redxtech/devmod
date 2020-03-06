@@ -17,12 +17,10 @@ import { Create } from './utils/submodules/Create'
 import { Moderation } from './utils/submodules/Moderation'
 import { Utils } from './utils/submodules/Utils'
 
-// The main bot class
 export class Devmod {
-
     // The client, config, and processes are all accessible from anywhere within the class
-    private readonly client: Client
-    private readonly config: ConfigInterface
+    public readonly client: Client
+    public readonly config: ConfigInterface
 
     // Declare the submodules
     public readonly create: Create

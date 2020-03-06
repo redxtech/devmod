@@ -5,4 +5,5 @@
 
 export interface ProcessInterface {
     name: string
+    init: Function
 }

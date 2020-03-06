@@ -3,4 +3,4 @@
  * Type file for colours
  */
 
-export type colour = number
+export type Colour = number
