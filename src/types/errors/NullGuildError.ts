@@ -6,7 +6,7 @@
 import { DevmodError } from './DevmodError'
 
 export class NullGuildError extends DevmodError {
-    constructor (message) {
-        super(message, 'NullGuildError')
+    constructor (message: string, area: string) {
+        super(message, 'NullGuildError', area)
     }
 }

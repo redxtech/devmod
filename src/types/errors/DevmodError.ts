@@ -4,9 +4,12 @@
  */
 
 export class DevmodError extends Error {
-    constructor (message, name) {
+    area: string
+
+    constructor (message: string, name: string, area: string) {
         super(message)
         this.message = message
         this.name = name
+        this.area = area
     }
 }

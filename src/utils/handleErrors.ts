@@ -4,13 +4,18 @@
  */
 
 import { DevmodError } from '../types/errors/DevmodError'
+import { logError } from './log'
 
 export const handleErrors = (e: DevmodError) => {
     switch (e.name) {
         case 'NullGuildError':
+        case 'NullChannelError':
+        case 'NullRoleError':
+            logError(e.area, e.message, e)
+            process.exit(1)
             break
         default:
-            console.log(`error: ${e.name}: ${e.message}`)
+            logError(e.area, e.message, e)
             break
     }
 }
