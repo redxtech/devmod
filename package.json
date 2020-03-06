@@ -1,0 +1,38 @@
+{
+  "name": "devmod-core",
+  "version": "1.0.0",
+  "description": "The core of the devmod bot.",
+  "main": "src/main.ts",
+  "author": "Gabe Dunn <gabe.dunn@shaw.ca>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon --exec ts-node ./src/main.ts",
+    "lint": "eslint --ext .ts ./src",
+    "lint:fix": "eslint --ext .ts ./src --fix"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "discord.js": "^12.0.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.7",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "docs"
+    ]
+  }
+}
