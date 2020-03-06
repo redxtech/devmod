@@ -13,7 +13,9 @@ import { hydrateChannels } from './utils/config/hydrateChannels'
 import { hydrateRoles } from './utils/config/hydrateRoles'
 import { handleErrors } from './utils/handleErrors'
 import { log } from './utils/log'
-import { Moderation } from './utils/functions/Moderation'
+import { Create } from './utils/submodules/Create'
+import { Moderation } from './utils/submodules/Moderation'
+import { Utils } from './utils/submodules/Utils'
 
 // The main bot class
 export class Devmod {
@@ -23,7 +25,9 @@ export class Devmod {
     private readonly config: ConfigInterface
 
     // Declare the submodules
+    public readonly create: Create
     public readonly moderation: Moderation
+    public readonly utils: Utils
 
     // The bot will be connected once the constructor is called
     constructor (processes: ProcessInterface[], config: UserConfigInterface) {
@@ -41,7 +45,9 @@ export class Devmod {
         this.client.login(this.config.token).then()
 
         // Initialize and assign the submodules
+        this.create = new Create(this.client, this.config)
         this.moderation = new Moderation(this.client, this.config)
+        this.utils = new Utils(this.client, this.config)
 
         // Initialize all the processes.
         for (const process of processes) {
