@@ -10,7 +10,7 @@ config()
 
 const main = () => {
     const bot = new Devmod([], {
-        token: process.env.BOT_TOKEN,
+        token: process.env.BOT_TOKEN || '',
         guildID: '431641323578327050',
         channelIDs: {
             warn: '432010493213802517',

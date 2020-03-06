@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon --exec ts-node ./src/main.ts",
+    "dev": "nodemon --exec ts-node ./src/main.ts --strict",
     "lint": "eslint --ext .ts ./src",
     "lint:fix": "eslint --ext .ts ./src --fix"
   },
