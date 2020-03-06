@@ -35,7 +35,6 @@ export class Devmod {
             // Once the bot has logged in, hydrate the config and log a successful login
             this.hydrateConfig()
             log('Constructor', `Logged in as ${this.client.user.tag}.`)
-            this.moderation.sayHi()
         })
 
         // Log the bot it
