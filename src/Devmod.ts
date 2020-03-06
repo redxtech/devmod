@@ -48,9 +48,9 @@ export class Devmod {
             log('Init', `Initialized ${process.name}!`)
         }
 
-        // Direct errors to be handled by the error handling function
+        // Direct errors to be handled by the error handling function (uncaught exceptions left untouched for now)
         process.on('unhandledRejection', handleErrors)
-        process.on('uncaughtException', handleErrors)
+        // process.on('uncaughtException', handleErrors)
     }
 
     // Hydrates the guild, channels, and roles properties in the config
