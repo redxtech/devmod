@@ -12,5 +12,5 @@ export const log = (area, message) => {
 }
 
 export const logError = (area: string, message: string, error: DevmodError) => {
-    console.error(`${green(`[${area}]`)} ${redBright(`${error.name}: ${error.message}`)}`)
+    console.error(`${green(`[${area}]`)} ${redBright(`${error.name}: ${message}`)}`)
 }

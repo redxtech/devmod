@@ -14,6 +14,10 @@ export const handleErrors = (e: DevmodError) => {
             logError(e.area, e.message, e)
             process.exit(1)
             break
+        case 'Error [TOKEN_INVALID]':
+            logError('Login', 'The token provided was invalid.', e)
+            process.exit(1)
+            break
         default:
             logError(e.area, e.message, e)
             break
