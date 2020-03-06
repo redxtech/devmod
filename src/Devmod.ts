@@ -44,7 +44,7 @@ export class Devmod {
             // Initialize all the processes.
             for (const process of processes) {
                 log('Init', `Initialized ${process.name}!`)
-                process.init(this.client, this.config)
+                process.init(this.client, this.config, this.sub)
             }
         })
 
