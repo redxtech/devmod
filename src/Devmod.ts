@@ -14,32 +14,40 @@ import { hydrateRoles } from './utils/config/hydrateRoles'
 import { handleErrors } from './utils/handleErrors'
 import { log } from './utils/log'
 
+// The main bot class
 export class Devmod {
-    client: Client
-    config: ConfigInterface
-    processes: ProcessInterface[]
 
+    // The client, config, and processes are all accessible from anywhere within the class
+    private readonly client: Client
+    private readonly config: ConfigInterface
+
+    // The bot will be connected once the constructor is called
     constructor (processes: ProcessInterface[], config: UserConfigInterface) {
-        this.processes = processes
         this.config = mergeConfigs(config)
 
         this.client = new Client()
 
         this.client.on('ready', () => {
+            // Once the bot has logged in, hydrate the config and log a successful login
             this.hydrateConfig()
             log('Constructor', `Logged in as ${this.client.user.tag}.`)
         })
 
-        try {
-            this.client.login(this.config.token).then(() => {})
-        } catch (e) {
-            console.error('Yeah that doesn\'t work.')
+        // Log the bot it
+        this.client.login(this.config.token).then()
+
+        // Initialize all the processes.
+        for (const process of processes) {
+            log('Init', `Initialized ${process.name}!`)
         }
 
+        // Direct errors to be handled by the error handling function
         process.on('unhandledRejection', handleErrors)
+        process.on('uncaughtException', handleErrors)
     }
 
-    hydrateConfig (): void {
+    // Hydrates the guild, channels, and roles properties in the config
+    private hydrateConfig (): void {
         this.config.guild = hydrateGuild(this.client, this.config.guildID)
         this.config.channels = hydrateChannels(this.config.guild, this.config.channelIDs)
         this.config.roles = hydrateRoles(this.config.guild, this.config.roleIDs)
