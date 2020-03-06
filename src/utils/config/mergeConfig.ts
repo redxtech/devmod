@@ -28,7 +28,6 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
             reports: config.channelIDs.reports, // Channel to forward all reports.
             assignRoles: config.channelIDs.assignRoles, // Channel to send and listen to reactions for roles.
             info: config.channelIDs.info, // Channel to send the info message.
-            antiBot: config.channelIDs.antiBot, // Channel to send notifications that the anti bot crusade has deleted a message.
             errors: config.channelIDs.errors // Channel to log errors to.
         },
         roleIDs: {

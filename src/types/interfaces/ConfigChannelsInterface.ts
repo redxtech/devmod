@@ -11,7 +11,6 @@ export interface ConfigChannelsInterface {
     reports: ChannelResolvable
     assignRoles: ChannelResolvable
     info: ChannelResolvable
-    antiBot: ChannelResolvable
     errors: ChannelResolvable
 }
 
@@ -21,6 +20,5 @@ export interface LiveConfigChannelsInterface {
     reports?: Channel
     assignRoles?: Channel
     info?: Channel
-    antiBot?: Channel
     errors?: Channel
 }
