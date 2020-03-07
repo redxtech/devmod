@@ -32,7 +32,7 @@ export const commandListener: ProcessInterface = {
                         : message.member
 
                     // Test that the users has the proper permissions to run the command.
-                    if (!sub.utils.hasPermissions(member, command.permissions)) {
+                    if (sub.utils.hasPermissions(member, command.permissions)) {
                         // Run the command.
                         command.exec(message, args, message.channel, member, client, config)
                     } else {
