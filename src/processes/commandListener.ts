@@ -38,7 +38,7 @@ export const commandListener: ProcessInterface = {
                     } else {
                         throw new InsufficientPermissionsError(
                             'CommandListener',
-                            `Insufficient permissions to run command (${member.user.tag}:${member.user.id} - ${commandName})`,
+                            `Insufficient permissions to run command (${commandName} - ${member.user.tag}:${member.user.id})`,
                             message
                         )
                     }
