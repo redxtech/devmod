@@ -8,7 +8,7 @@ import { GuildMember, User } from 'discord.js'
 
 export class Create extends Submodule {
     // Function to unify User & GuildMember classes
-    public createMember (user: User | GuildMember): GuildMember {
+    public member (user: User | GuildMember): GuildMember {
         if (Object.prototype.hasOwnProperty.call(user, 'user')) {
             return user as GuildMember
         } else {

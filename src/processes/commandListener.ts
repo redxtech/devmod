@@ -12,7 +12,7 @@ import { SubmodulesInterface } from '../types/interfaces/SubmodulesInterface'
 
 export const commandListener: ProcessInterface = {
     name: 'CommandListener',
-    init (client: Client, config: ConfigInterface, sub:Partial<SubmodulesInterface>) {
+    init (client: Client, config: ConfigInterface, sub: Partial<SubmodulesInterface>) {
         client.on('message', async message => {
             if (['text', 'dm'].some(channelType => message.channel.type == channelType) && message.content[0] == config.prefix) {
                 // Separate the entire command after the prefix into args.
@@ -26,17 +26,17 @@ export const commandListener: ProcessInterface = {
                     // Save the command to a variable.
                     const command = commands[commandName]
 
-                    // If the message was a DM, populate the member field
-                    // if (message.channel.type == 'dm') {
-                    //     message.member = ''
-                    // }
+                    // Accurately set the member to be consistent between DMChannel and TextChannel
+                    const member = message.channel.type === 'dm'
+                        ? sub.create.member(message.author)
+                        : message.member
 
                     // Test that the users has the proper permissions to run the command.
-                    if (!sub.utils.hasPermissions(message.member, command.permissions)) {
+                    if (!sub.utils.hasPermissions(member, command.permissions)) {
                         // Run the command.
-                        command.exec(message, args, message.channel, message.member, client, config)
+                        command.exec(message, args, message.channel, member, client, config)
                     } else {
-                        throw new InsufficientPermissionsError(`Insufficient permissions to run command (@${message.member.user.tag}:${commandName})`, 'CommandListener')
+                        throw new InsufficientPermissionsError(`Insufficient permissions to run command (@${member.user.tag}:${commandName})`, 'CommandListener')
                     }
                 }
             }
