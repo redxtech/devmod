@@ -4,9 +4,10 @@
  */
 
 import { DevmodError } from './DevmodError'
+import { Message } from 'discord.js'
 
 export class NullRoleError extends DevmodError {
     constructor (area: string, message: string) {
-        super('NullRoleError', area, message)
+        super('NullRoleError', area, message, { deleted: true } as Message)
     }
 }
