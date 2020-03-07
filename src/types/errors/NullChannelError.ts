@@ -6,7 +6,7 @@
 import { DevmodError } from './DevmodError'
 
 export class NullChannelError extends DevmodError {
-    constructor (message: string, area: string) {
-        super(message, 'NullChannelError', area)
+    constructor (area: string, message: string) {
+        super('NullChannelError', area, message)
     }
 }

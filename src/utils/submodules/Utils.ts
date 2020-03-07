@@ -3,8 +3,7 @@
  * Class file for the bot's util submodules
  */
 
-import { Client, GuildMember, PermissionResolvable, Presence } from 'discord.js'
-import { ConfigInterface } from '../../types/interfaces/ConfigInterface'
+import { GuildMember, PermissionResolvable, Presence } from 'discord.js'
 import { Submodule } from './Submodule'
 
 export class Utils extends Submodule {

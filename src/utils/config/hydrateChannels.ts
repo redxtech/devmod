@@ -13,7 +13,7 @@ export const hydrateChannels = (guild: Guild, channels: ConfigChannelsInterface)
     for (const channel of Object.keys(channels)) {
         hydrated[channel] = guild.channels.resolve(channels[channel])
         if (hydrated[channel] == null) {
-            throw new NullChannelError(`A channel is null (${channel}:${channels[channel]})`, 'Hydration')
+            throw new NullChannelError('Hydration', `A channel is null (${channel}:${channels[channel]})`)
         }
     }
 

@@ -18,6 +18,7 @@ import { Moderation } from './utils/submodules/Moderation'
 import { Utils } from './utils/submodules/Utils'
 import { commandListener } from './processes/commandListener'
 import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
+import { DevmodError } from './types/errors/DevmodError'
 
 export class Devmod {
     // The client, config, and processes are all accessible from anywhere within the class
@@ -28,7 +29,7 @@ export class Devmod {
     public readonly sub: Partial<SubmodulesInterface> = {}
 
     // The bot will be connected once the constructor is called
-    constructor (processes: ProcessInterface[], config: UserConfigInterface) {
+    constructor (commands: ConfigInterface[], processes: ProcessInterface[], config: UserConfigInterface) {
         this.config = mergeConfigs(config)
 
         this.client = new Client()
@@ -36,7 +37,7 @@ export class Devmod {
         this.client.on('ready', () => {
             // Once the bot has logged in, hydrate the config and log a successful login
             this.hydrateConfig()
-            log('Constructor', `Logged in as ${this.client.user.tag}.`)
+            log('Init', `Logged in as ${this.client.user.tag}.`)
 
             if (this.config.loadCommandListener) {
                 // Inject the command listener into the process list
@@ -46,11 +47,11 @@ export class Devmod {
             // Initialize all the processes.
             for (const process of processes) {
                 log('Init', `Initialized ${process.name}!`)
-                process.init(this.client, this.config, this.sub)
+                process.init(this.client, this.config, this.sub as SubmodulesInterface)
             }
         })
 
-        // Log the bot it
+        // Log the bot in
         this.client.login(this.config.token).then()
 
         // Initialize and assign the submodules
@@ -59,7 +60,7 @@ export class Devmod {
         this.sub.utils = new Utils(this.client, this.config)
 
         // Direct errors to be handled by the error handling function (uncaught exceptions left untouched for now)
-        process.on('unhandledRejection', handleErrors)
+        process.on('unhandledRejection', (e: DevmodError) => handleErrors(e, this.config, this.sub as SubmodulesInterface))
         // process.on('uncaughtException', handleErrors)
     }
 

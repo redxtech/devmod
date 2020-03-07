@@ -4,7 +4,11 @@
  */
 
 import { Submodule } from './Submodule'
-import { GuildMember, User } from 'discord.js'
+import { GuildMember, MessageEmbed, User } from 'discord.js'
+import { Colour } from '../../types/Colour'
+import { DevmodError } from '../../types/errors/DevmodError'
+import { red } from '../colours'
+import { capitalize } from '../functions/capitalize'
 
 export class Create extends Submodule {
     // Function to unify User & GuildMember classes
@@ -15,5 +19,31 @@ export class Create extends Submodule {
             return this.config.guild.members.resolve(user.id)
         }
     }
-    // TODO: createMessage() - pass a title, message, etc. and return a message object
+
+    // Function to create a unified message
+    public message (title: string, description: string, colour: Colour, rest: Partial<MessageEmbed> = {}): { embed: Partial<MessageEmbed> } | string {
+        return !this.config.compactMessages
+            ? {
+                embed: {
+                    title,
+                    description: description || undefined,
+                    color: colour,
+                    ...rest
+                }
+            }
+            : `**[${title}]** ${description}`
+    }
+
+    // Function to create a unified error message
+    public errorMessage (error: DevmodError): { embed: Partial<MessageEmbed> } | string {
+        return this.message(error.name, error.message, red, {
+            fields: Object.entries(error).map(field => {
+                return {
+                    name: `${capitalize(field[0])}:`,
+                    value: field[1],
+                    inline: false
+                }
+            })
+        })
+    }
 }

@@ -9,5 +9,5 @@ import { SubmodulesInterface } from './SubmodulesInterface'
 
 export interface ProcessInterface {
     name: string
-    init: (client: Client, config: ConfigInterface, sub: Partial<SubmodulesInterface>) => any
+    init: (client: Client, config: ConfigInterface, sub: SubmodulesInterface) => any
 }

@@ -13,7 +13,7 @@ export const hydrateRoles = (guild: Guild, roles: ConfigRoleInterface): LiveConf
     for (const role of Object.keys(roles)) {
         hydrated[role] = guild.roles.resolve(roles[role])
         if (hydrated[role] == null) {
-            throw new NullRoleError(`A channel is null (${role}:${roles[role]})`, 'Hydration')
+            throw new NullRoleError('Hydration', `A channel is null (${role}:${roles[role]})`)
         }
     }
 

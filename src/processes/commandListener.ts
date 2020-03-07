@@ -12,8 +12,8 @@ import { SubmodulesInterface } from '../types/interfaces/SubmodulesInterface'
 
 export const commandListener: ProcessInterface = {
     name: 'CommandListener',
-    init (client: Client, config: ConfigInterface, sub: Partial<SubmodulesInterface>) {
-        client.on('message', async message => {
+    init (client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
+        client.on('message', async (message: Message) => {
             if (['text', 'dm'].some(channelType => message.channel.type == channelType) && message.content[0] == config.prefix) {
                 // Separate the entire command after the prefix into args.
                 const args = message.content.substr(1).split(' ')
@@ -26,17 +26,20 @@ export const commandListener: ProcessInterface = {
                     // Save the command to a variable.
                     const command = commands[commandName]
 
-                    // Accurately set the member to be consistent between DMChannel and TextChannel
+                    // Set the member to be consistent between DMChannel and TextChannel
                     const member = message.channel.type === 'dm'
                         ? sub.create.member(message.author)
                         : message.member
 
                     // Test that the users has the proper permissions to run the command.
-                    if (sub.utils.hasPermissions(member, command.permissions)) {
+                    if (!sub.utils.hasPermissions(member, command.permissions)) {
                         // Run the command.
                         command.exec(message, args, message.channel, member, client, config)
                     } else {
-                        throw new InsufficientPermissionsError(`Insufficient permissions to run command (@${member.user.tag}:${commandName})`, 'CommandListener')
+                        throw new InsufficientPermissionsError(
+                            'CommandListener',
+                            `Insufficient permissions to run command (${member.user.tag}:${member.user.id} - ${commandName})`
+                        )
                     }
                 }
             }

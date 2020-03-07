@@ -6,7 +6,7 @@
 import { DevmodError } from './DevmodError'
 
 export class InsufficientPermissionsError extends DevmodError {
-    constructor (message: string, area: string) {
-        super(message, 'InsufficientPermissionsError', area)
+    constructor (area: string, message: string) {
+        super('InsufficientPermissionsError', area, message)
     }
 }

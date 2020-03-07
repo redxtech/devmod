@@ -9,7 +9,7 @@ import { config } from 'dotenv'
 config()
 
 const main = () => {
-    const bot = new Devmod([], {
+    const bot = new Devmod([], [], {
         token: process.env.BOT_TOKEN || '',
         guildID: '431641323578327050',
         channelIDs: {

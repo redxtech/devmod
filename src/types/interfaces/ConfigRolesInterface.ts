@@ -1,6 +1,6 @@
 /*
  * Gabe Dunn 2020
- * Interface file for the channels entry in the config
+ * Interface file for the roles entry in the config
  */
 
 import { Role, RoleResolvable } from 'discord.js'

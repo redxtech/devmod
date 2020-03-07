@@ -3,7 +3,7 @@
  * Interface file for the channels entry in the config
  */
 
-import { Channel, ChannelResolvable } from 'discord.js'
+import { ChannelResolvable, TextChannel } from 'discord.js'
 
 export interface ConfigChannelsInterface {
     warn: ChannelResolvable
@@ -15,10 +15,10 @@ export interface ConfigChannelsInterface {
 }
 
 export interface LiveConfigChannelsInterface {
-    warn?: Channel
-    ban?: Channel
-    reports?: Channel
-    assignRoles?: Channel
-    info?: Channel
-    errors?: Channel
+    warn?: TextChannel
+    ban?: TextChannel
+    reports?: TextChannel
+    assignRoles?: TextChannel
+    info?: TextChannel
+    errors?: TextChannel
 }

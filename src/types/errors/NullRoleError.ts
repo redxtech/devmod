@@ -6,7 +6,7 @@
 import { DevmodError } from './DevmodError'
 
 export class NullRoleError extends DevmodError {
-    constructor (message: string, area: string) {
-        super(message, 'NullRoleError', area)
+    constructor (area: string, message: string) {
+        super('NullRoleError', area, message)
     }
 }
