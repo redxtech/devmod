@@ -8,6 +8,7 @@ import { Guild, GuildResolvable, MessageEmbed } from 'discord.js'
 import { ApprovedRolesInterface } from './ApprovedRolesInterface'
 import { ConfigChannelsInterface, LiveConfigChannelsInterface } from './ConfigChannelsInterface'
 import { ConfigRoleInterface, LiveConfigRoleInterface } from './ConfigRolesInterface'
+import { CommandInterface } from './CommandInterface'
 
 export interface ConfigInterface {
     token: string
@@ -15,6 +16,7 @@ export interface ConfigInterface {
     guild?: Guild,
     prefix: string;
     loadCommandListener: boolean
+    commands: CommandInterface[]
     compactMessages: boolean
     messageTTL: number
     dbFile: string

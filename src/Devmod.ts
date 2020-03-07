@@ -19,6 +19,7 @@ import { Utils } from './utils/submodules/Utils'
 import { commandListener } from './processes/commandListener'
 import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 import { DevmodError } from './types/errors/DevmodError'
+import { CommandInterface } from './types/interfaces/CommandInterface'
 
 export class Devmod {
     // The client, config, and processes are all accessible from anywhere within the class
@@ -29,8 +30,9 @@ export class Devmod {
     public readonly sub: Partial<SubmodulesInterface> = {}
 
     // The bot will be connected once the constructor is called
-    constructor (commands: ConfigInterface[], processes: ProcessInterface[], config: UserConfigInterface) {
+    constructor (commands: CommandInterface[], processes: ProcessInterface[], config: UserConfigInterface) {
         this.config = mergeConfigs(config)
+        this.config.commands = commands
 
         this.client = new Client()
 

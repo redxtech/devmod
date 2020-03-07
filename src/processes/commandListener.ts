@@ -5,10 +5,10 @@
 
 import { Client, DMChannel, GuildMember, Message, PartialMessage, TextChannel } from 'discord.js'
 import { ConfigInterface } from '../types/interfaces/ConfigInterface'
-import { log } from '../utils/log'
 import { ProcessInterface } from '../types/interfaces/ProcessInterface'
 import { InsufficientPermissionsError } from '../types/errors/InsufficientPermissionsError'
 import { SubmodulesInterface } from '../types/interfaces/SubmodulesInterface'
+import { expandCommands } from '../utils/expandCommands'
 
 export const commandListener: ProcessInterface = {
     name: 'CommandListener',
@@ -20,6 +20,9 @@ export const commandListener: ProcessInterface = {
 
                 // Set the command to the first argument and remove it from the args array.
                 const commandName = args.shift()
+
+                // Expand the command list
+                const commands = expandCommands(config.commands)
 
                 // If the command exists, test for permissions and run the command function.
                 if (Object.prototype.hasOwnProperty.call(commands, commandName)) {
@@ -45,18 +48,5 @@ export const commandListener: ProcessInterface = {
                 }
             }
         })
-    }
-}
-
-const commands = {
-    test: {
-        name: 'Test Command',
-        aliases: ['test'],
-        category: 'utils',
-        description: 'Test command',
-        permissions: ['ADMINISTRATOR'],
-        exec (message: Message | PartialMessage, args: string[], channel: TextChannel | DMChannel, member: GuildMember, client: Client, config: ConfigInterface) {
-            log('Test', `Test Message: ${args.join(' ')}`)
-        }
     }
 }

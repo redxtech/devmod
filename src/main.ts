@@ -5,11 +5,15 @@
 
 import { Devmod } from './Devmod'
 import { config } from 'dotenv'
+import { Client, DMChannel, GuildMember, Message, PartialMessage, TextChannel } from 'discord.js'
+import { ConfigInterface } from './types/interfaces/ConfigInterface'
+import { log } from './utils/log'
+import { CommandInterface } from './types/interfaces/CommandInterface'
 
 config()
 
 const main = () => {
-    const bot = new Devmod([], [], {
+    const bot = new Devmod(commands, [], {
         token: process.env.BOT_TOKEN || '',
         guildID: '431641323578327050',
         channelIDs: {
@@ -26,5 +30,19 @@ const main = () => {
         }
     })
 }
+
+const commands: CommandInterface[] = [
+    {
+        name: 'Test Command',
+        aliases: ['test'],
+        category: 'utils',
+        description: 'Test command',
+        permissions: ['ADMINISTRATOR'],
+        exec (message: Message | PartialMessage, args: string[], channel: TextChannel | DMChannel, member: GuildMember, client: Client, config: ConfigInterface) {
+            log('Test', `Test Message: ${args.join(' ') || 'test!'}`)
+            channel.send(args.join(' ') || 'test!').then().catch()
+        }
+    }
+]
 
 main()

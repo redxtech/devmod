@@ -15,7 +15,7 @@ export const log = (area, message) => {
 }
 
 export const logError = (error: DevmodError) => {
-    console.error(`${green(`[${error.area}]`)} ${redBright(`${error.name}: ${error.message}`)}`)
+    console.error(`${green(`[${error.area || 'Uncaught'}]`)} ${redBright(`${error.name}: ${error.message}`)}`)
 }
 
 // Function to log errors to the error channel
