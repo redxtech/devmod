@@ -9,13 +9,15 @@ import { Client, DMChannel, GuildMember, Message, PartialMessage, TextChannel } 
 import { ConfigInterface } from './types/interfaces/ConfigInterface'
 import { log } from './utils/log'
 import { CommandInterface } from './types/interfaces/CommandInterface'
+import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 
 config()
 
 const main = () => {
-    const bot = new Devmod(commands, [], {
+    const config = {
         token: process.env.BOT_TOKEN || '',
         guildID: '431641323578327050',
+        populateCommands: false,
         channelIDs: {
             warn: '432010493213802517',
             ban: '432010505000058881',
@@ -28,21 +30,21 @@ const main = () => {
             muted: '593132538285916171',
             verified: '598708805487820811'
         }
-    })
-}
-
-const commands: CommandInterface[] = [
-    {
-        name: 'Test Command',
-        aliases: ['test'],
-        category: 'utils',
-        description: 'Test command',
-        permissions: ['ADMINISTRATOR'],
-        exec (message: Message | PartialMessage, args: string[], channel: TextChannel | DMChannel, member: GuildMember, client: Client, config: ConfigInterface) {
-            log('Test', `Test Message: ${args.join(' ') || 'test!'}`)
-            channel.send(args.join(' ') || 'test!').then().catch()
-        }
     }
-]
+    const commands: CommandInterface[] = [
+        {
+            name: 'Test Command',
+            aliases: ['test'],
+            category: 'utils',
+            description: 'Test command',
+            permissions: ['ADMINISTRATOR'],
+            exec (message: Message | PartialMessage, args: string[], channel: TextChannel | DMChannel, member: GuildMember, client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
+                log('Test', `Test Message: ${args.join(' ') || 'test!'}`)
+                return channel.send(`Test Message: ${args.join(' ') || 'test!'}`).then().catch()
+            }
+        }
+    ]
+    const bot = new Devmod(commands, [], config)
+}
 
 main()

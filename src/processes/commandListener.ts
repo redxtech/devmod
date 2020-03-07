@@ -37,7 +37,7 @@ export const commandListener: ProcessInterface = {
                     // Test that the users has the proper permissions to run the command.
                     if (sub.utils.hasPermissions(member, command.permissions)) {
                         // Run the command.
-                        command.exec(message, args, message.channel, member, client, config)
+                        await command.exec(message, args, message.channel, member, client, config, sub)
                     } else {
                         throw new InsufficientPermissionsError(
                             'CommandListener',

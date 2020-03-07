@@ -14,6 +14,7 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
         guildID: config.guildID, // Discord ID of the server your bot is running on.
         prefix: config.prefix || '.', // Prefix to identify commands.
         loadCommandListener: config.loadCommandListener || true, // Whether or not to load the command listener.
+        populateCommands: config.populateCommands || true, // Whether or not to load in all the default commands
         commands: [], // Empty array of commands.
         compactMessages: config.compactMessages || false, // Whether or not to use compact messages.
         messageTTL: config.messageTTL || 45, // Amount of time in seconds to wait before deleting large help messages.

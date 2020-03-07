@@ -5,6 +5,7 @@
 
 import { Client, DMChannel, GuildMember, Message, PartialMessage, PermissionResolvable, TextChannel } from 'discord.js'
 import { ConfigInterface } from './ConfigInterface'
+import { SubmodulesInterface } from './SubmodulesInterface'
 
 export interface CommandInterface {
     name: string
@@ -12,5 +13,5 @@ export interface CommandInterface {
     category: 'admin' | 'fun' | 'moderation' | 'utils'
     description: string
     permissions: PermissionResolvable
-    exec: (message: Message | PartialMessage, args: string[], channel: TextChannel | DMChannel, member: GuildMember, client: Client, config: ConfigInterface) => any
+    exec: (message: Message | PartialMessage, args: string[], channel: TextChannel | DMChannel, member: GuildMember, client: Client, config: ConfigInterface, sub: SubmodulesInterface) => Promise<Message | void>
 }

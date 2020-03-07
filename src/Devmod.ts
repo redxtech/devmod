@@ -3,7 +3,7 @@
  * Main class file for the bot's core
  */
 
-import { Client } from 'discord.js'
+import { Client, DMChannel, GuildMember, Message, PartialMessage, TextChannel } from 'discord.js'
 import { ConfigInterface } from './types/interfaces/ConfigInterface'
 import { UserConfigInterface } from './types/interfaces/UserConfigInterface'
 import { mergeConfigs } from './utils/config/mergeConfig'
@@ -20,6 +20,7 @@ import { commandListener } from './processes/commandListener'
 import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 import { DevmodError } from './types/errors/DevmodError'
 import { CommandInterface } from './types/interfaces/CommandInterface'
+import { commands as defaultCommands } from './commands'
 
 export class Devmod {
     // The client, config, and processes are all accessible from anywhere within the class
@@ -32,7 +33,7 @@ export class Devmod {
     // The bot will be connected once the constructor is called
     constructor (commands: CommandInterface[], processes: ProcessInterface[], config: UserConfigInterface) {
         this.config = mergeConfigs(config)
-        this.config.commands = commands
+        this.config.commands = this.config.populateCommands ? [...defaultCommands, ...commands] : commands
 
         this.client = new Client()
 
@@ -41,13 +42,8 @@ export class Devmod {
             this.hydrateConfig()
             log('Init', `Logged in as ${this.client.user.tag}.`)
 
-            if (this.config.loadCommandListener) {
-                // Inject the command listener into the process list
-                processes.push(commandListener)
-            }
-
             // Initialize all the processes.
-            for (const process of processes) {
+            for (const process of this.config.loadCommandListener ? [commandListener, ...processes] : processes) {
                 log('Init', `Initialized ${process.name}!`)
                 process.init(this.client, this.config, this.sub as SubmodulesInterface)
             }
