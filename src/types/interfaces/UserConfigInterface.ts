@@ -12,7 +12,8 @@ import { ConfigRoleInterface } from './ConfigRolesInterface'
 export interface UserConfigInterface {
     token: string
     guildID: GuildResolvable
-    prefix?: string;
+    prefix?: string
+    loadCommandListener: boolean
     compactMessages?: boolean
     messageTTL?: number
     dbFile?: string

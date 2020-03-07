@@ -38,8 +38,10 @@ export class Devmod {
             this.hydrateConfig()
             log('Constructor', `Logged in as ${this.client.user.tag}.`)
 
-            // Inject the command listener into the process list
-            processes.push(commandListener)
+            if (this.config.loadCommandListener) {
+                // Inject the command listener into the process list
+                processes.push(commandListener)
+            }
 
             // Initialize all the processes.
             for (const process of processes) {
