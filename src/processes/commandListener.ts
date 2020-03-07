@@ -8,10 +8,11 @@ import { ConfigInterface } from '../types/interfaces/ConfigInterface'
 import { log } from '../utils/log'
 import { ProcessInterface } from '../types/interfaces/ProcessInterface'
 import { InsufficientPermissionsError } from '../types/errors/InsufficientPermissionsError'
+import { SubmodulesInterface } from '../types/interfaces/SubmodulesInterface'
 
 export const commandListener: ProcessInterface = {
     name: 'CommandListener',
-    init (client: Client, config: ConfigInterface) {
+    init (client: Client, config: ConfigInterface, sub:Partial<SubmodulesInterface>) {
         client.on('message', async message => {
             if (['text', 'dm'].some(channelType => message.channel.type == channelType) && message.content[0] == config.prefix) {
                 // Separate the entire command after the prefix into args.
@@ -31,11 +32,11 @@ export const commandListener: ProcessInterface = {
                     // }
 
                     // Test that the users has the proper permissions to run the command.
-                    if (message.member.permissions.has(command.permissions)) {
+                    if (!sub.utils.hasPermissions(message.member, command.permissions)) {
                         // Run the command.
                         command.exec(message, args, message.channel, message.member, client, config)
                     } else {
-                        throw new InsufficientPermissionsError(`Insufficient permissions to run command (${commandName})`, 'CommandListener')
+                        throw new InsufficientPermissionsError(`Insufficient permissions to run command (@${message.member.user.tag}:${commandName})`, 'CommandListener')
                     }
                 }
             }

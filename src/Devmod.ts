@@ -17,7 +17,7 @@ import { Create } from './utils/submodules/Create'
 import { Moderation } from './utils/submodules/Moderation'
 import { Utils } from './utils/submodules/Utils'
 import { commandListener } from './processes/commandListener'
-import { Submodule } from './utils/submodules/Submodule'
+import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 
 export class Devmod {
     // The client, config, and processes are all accessible from anywhere within the class
@@ -25,7 +25,7 @@ export class Devmod {
     public readonly config: ConfigInterface
 
     // Create the submodules field
-    public readonly sub: { [key: string]: Submodule } = {}
+    public readonly sub: Partial<SubmodulesInterface> = {}
 
     // The bot will be connected once the constructor is called
     constructor (processes: ProcessInterface[], config: UserConfigInterface) {

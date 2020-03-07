@@ -3,11 +3,11 @@
  * Interface file for the processes that devmod runs
  */
 
-import { Client, DMChannel, GuildMember, Message, TextChannel } from 'discord.js'
+import { Client } from 'discord.js'
 import { ConfigInterface } from './ConfigInterface'
-import { Submodule } from '../../utils/submodules/Submodule'
+import { SubmodulesInterface } from './SubmodulesInterface'
 
 export interface ProcessInterface {
     name: string
-    init: (client: Client, config: ConfigInterface, sub: { [key: string]: Submodule }) => any
+    init: (client: Client, config: ConfigInterface, sub: Partial<SubmodulesInterface>) => any
 }
