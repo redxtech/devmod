@@ -15,7 +15,7 @@ export const ping: CommandInterface = {
     aliases: ['ping'],
     category: 'utils',
     description: 'Shows round trip time for the bot.',
-    permissions: ['SEND_MESSAGES'],
+    permissions: 'SEND_MESSAGES',
     async exec (message: Message | PartialMessage, args: string[], channel: TextChannel | DMChannel, member: GuildMember, client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
         await deleteMessage(message)
 
