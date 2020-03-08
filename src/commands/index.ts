@@ -1,10 +1,10 @@
 /*
  * Gabe Dunn 2020
- * Command aggregator
+ * Command aggregator file
  */
 
 import { ping } from './ping'
 
-export const defaultCommands = [
+export const commands = [
     ping
 ]

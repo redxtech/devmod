@@ -20,7 +20,7 @@ import { commandListener } from './processes/commandListener'
 import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 import { DevmodError } from './types/errors/DevmodError'
 import { CommandInterface } from './types/interfaces/CommandInterface'
-import { defaultCommands } from './commands'
+import { commands as defaultCommands } from './commands'
 
 export class Devmod {
     // The client, config, and processes are all accessible from anywhere within the class
