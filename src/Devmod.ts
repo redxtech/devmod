@@ -3,7 +3,7 @@
  * Main class file for the bot's core
  */
 
-import { Client, DMChannel, GuildMember, Message, PartialMessage, TextChannel } from 'discord.js'
+import { Client } from 'discord.js'
 import { ConfigInterface } from './types/interfaces/ConfigInterface'
 import { UserConfigInterface } from './types/interfaces/UserConfigInterface'
 import { mergeConfigs } from './utils/config/mergeConfig'
@@ -20,7 +20,7 @@ import { commandListener } from './processes/commandListener'
 import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 import { DevmodError } from './types/errors/DevmodError'
 import { CommandInterface } from './types/interfaces/CommandInterface'
-import { commands as defaultCommands } from './commands'
+import { defaultCommands } from './commands'
 
 export class Devmod {
     // The client, config, and processes are all accessible from anywhere within the class
@@ -33,7 +33,7 @@ export class Devmod {
     // The bot will be connected once the constructor is called
     constructor (commands: CommandInterface[], processes: ProcessInterface[], config: UserConfigInterface) {
         this.config = mergeConfigs(config)
-        this.config.commands = [...defaultCommands, ...commands]
+        this.config.commands = this.config.populateCommands ? [...defaultCommands, ...commands] : commands
 
         this.client = new Client()
 

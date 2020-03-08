@@ -6,7 +6,6 @@
 import { ConfigInterface } from '../../types/interfaces/ConfigInterface'
 import { UserConfigInterface } from '../../types/interfaces/UserConfigInterface'
 import { join } from 'path'
-import { CommandInterface } from '../../types/interfaces/CommandInterface'
 
 export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
     return {
@@ -14,6 +13,9 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
         guildID: config.guildID, // Discord ID of the server your bot is running on.
         prefix: config.prefix || '.', // Prefix to identify commands.
         loadCommandListener: config.loadCommandListener || true, // Whether or not to load the command listener.
+        populateCommands: Object.prototype.hasOwnProperty.call(config, 'populateCommands')
+            ? config.populateCommands
+            : true, // Whether or not to load in all the default commands
         commands: [], // Empty array of commands.
         compactMessages: config.compactMessages || false, // Whether or not to use compact messages.
         messageTTL: config.messageTTL || 45, // Amount of time in seconds to wait before deleting large help messages.
@@ -23,7 +25,7 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
         repTriggers: config.repTriggers || ['thanks', 'kudos'], // List of triggers for thanking users.
         repEmote: config.repEmote || '👍', // The emoji to prefix the thanks received message with.
         activities: config.activities || ['Serving NaN users!'], // List of activities for the bot to show as a status.
-        tags: config.tags  || {}, // List of tags for the .tag command.
+        tags: config.tags || {}, // List of tags for the .tag command.
         approvedRoles: config.approvedRoles || [], // List of lists of roles the reaction roles channel.
         channelIDs: {
             warn: config.channelIDs.warn, // Channel to forward all warning confirmation messages.

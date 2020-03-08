@@ -5,6 +5,6 @@
 
 import { ping } from './ping'
 
-export const commands = [
+export const defaultCommands = [
     ping
 ]

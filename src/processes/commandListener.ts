@@ -3,7 +3,7 @@
  * Process file for the command listener
  */
 
-import { Client, DMChannel, GuildMember, Message, PartialMessage, TextChannel } from 'discord.js'
+import { Client, Message } from 'discord.js'
 import { ConfigInterface } from '../types/interfaces/ConfigInterface'
 import { ProcessInterface } from '../types/interfaces/ProcessInterface'
 import { InsufficientPermissionsError } from '../types/errors/InsufficientPermissionsError'
