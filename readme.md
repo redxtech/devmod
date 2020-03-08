@@ -4,8 +4,9 @@
 devmod is a project started by and for the [devcord](https://devcord.com)
 community on discord. It was written in typescript as part of devcord's
 topic of the month (March 2020), in which typescript was the month's
-featured topic. The bot was written with modularity, ease of use, and was
-reworked from the ground up in an effort to make the bot more stable.
+featured topic. The bot was written with modularity, transparency, and
+ease of use, and was reworked from the ground up in an effort to make
+the bot more stable.
 
 ## W.I.P.
 This bot is currently in the very early stages of the rewrite. This
