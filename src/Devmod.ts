@@ -33,7 +33,7 @@ export class Devmod {
     // The bot will be connected once the constructor is called
     constructor (commands: CommandInterface[], processes: ProcessInterface[], config: UserConfigInterface) {
         this.config = mergeConfigs(config)
-        this.config.commands = this.config.populateCommands ? [...defaultCommands, ...commands] : commands
+        this.config.commands = [...defaultCommands, ...commands]
 
         this.client = new Client()
 

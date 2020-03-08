@@ -17,7 +17,6 @@ const main = () => {
     const config = {
         token: process.env.BOT_TOKEN || '',
         guildID: '431641323578327050',
-        populateCommands: false,
         channelIDs: {
             warn: '432010493213802517',
             ban: '432010505000058881',

@@ -16,7 +16,6 @@ export interface ConfigInterface {
     guild?: Guild,
     prefix: string;
     loadCommandListener: boolean
-    populateCommands: boolean
     commands: CommandInterface[]
     compactMessages: boolean
     messageTTL: number
