@@ -20,7 +20,7 @@ import { blue } from '../utils/colours'
 export const about: CommandInterface = {
     name: 'About',
     aliases: ['about', 'info'],
-    category: 'utils',
+    category: 'info',
     description: 'Shows some information about the bot.',
     permissions: 'SEND_MESSAGES',
     async exec(
@@ -44,6 +44,7 @@ export const about: CommandInterface = {
             the bot more stable.`,
                 blue,
                 {
+                    author: sub.create.author(member),
                     fields: [
                         {
                             name: 'Author:',

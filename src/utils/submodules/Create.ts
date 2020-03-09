@@ -4,7 +4,7 @@
  */
 
 import { Submodule } from './Submodule'
-import { GuildMember, MessageEmbed, User } from 'discord.js'
+import { GuildMember, MessageEmbed, MessageEmbedAuthor, User } from 'discord.js'
 import { Colour } from '../../types/Colour'
 import { DevmodError } from '../../types/errors/DevmodError'
 import { red } from '../colours'
@@ -12,7 +12,7 @@ import { capitalize } from '../functions/capitalize'
 
 export class Create extends Submodule {
     // Function to unify User & GuildMember classes
-    public member (user: User | GuildMember): GuildMember {
+    public member(user: User | GuildMember): GuildMember {
         if (Object.prototype.hasOwnProperty.call(user, 'user')) {
             return user as GuildMember
         } else {
@@ -20,22 +20,40 @@ export class Create extends Submodule {
         }
     }
 
+    // Function to create an author to send with a message
+    public author(user: User | GuildMember): MessageEmbedAuthor {
+        const member = this.member(user)
+        return {
+            name: member.nickname,
+            iconURL: member.user.avatarURL({
+                dynamic: true
+            })
+        }
+    }
+
     // Function to create a unified message
-    public message (title: string, description: string, colour: Colour, rest: Partial<MessageEmbed> = {}): { embed: Partial<MessageEmbed> } | string {
+    public message(
+        title: string,
+        description: string | false,
+        colour: Colour,
+        rest: Partial<MessageEmbed> = {}
+    ): { embed: Partial<MessageEmbed> } | string {
         return !this.config.compactMessages
             ? {
-                embed: {
-                    title,
-                    description: description || undefined,
-                    color: colour,
-                    ...rest
-                }
-            }
+                  embed: {
+                      title,
+                      description: description || undefined,
+                      color: colour,
+                      ...rest
+                  }
+              }
             : `**[${title}]** ${description}`
     }
 
     // Function to create a unified error message
-    public errorMessage (error: DevmodError): { embed: Partial<MessageEmbed> } | string {
+    public errorMessage(
+        error: DevmodError
+    ): { embed: Partial<MessageEmbed> } | string {
         return this.message(error.name, error.message, red, {
             fields: Object.entries(error).map(field => {
                 return {
