@@ -7,7 +7,9 @@ import { logError } from './log'
 import { CommandInterface } from '../types/interfaces/CommandInterface'
 import { MessageEmbed } from 'discord.js'
 
-export const expandCommands = (commands: CommandInterface[]): { [key: string]: CommandInterface } => {
+export const expandCommands = (
+    commands: CommandInterface[]
+): { [key: string]: CommandInterface } => {
     return commands.reduce((previous, current) => {
         // Clone previous object.
         const newCommands = previous

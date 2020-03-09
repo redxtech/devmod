@@ -12,9 +12,14 @@ import { expandCommands } from '../utils/expandCommands'
 
 export const commandListener: ProcessInterface = {
     name: 'CommandListener',
-    init (client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
+    init(client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
         client.on('message', async (message: Message) => {
-            if (['text', 'dm'].some(channelType => message.channel.type == channelType) && message.content[0] == config.prefix) {
+            if (
+                ['text', 'dm'].some(
+                    channelType => message.channel.type == channelType
+                ) &&
+                message.content[0] == config.prefix
+            ) {
                 // Separate the entire command after the prefix into args.
                 const args = message.content.substr(1).split(' ')
 
@@ -25,19 +30,30 @@ export const commandListener: ProcessInterface = {
                 const commands = expandCommands(config.commands)
 
                 // If the command exists, test for permissions and run the command function.
-                if (Object.prototype.hasOwnProperty.call(commands, commandName)) {
+                if (
+                    Object.prototype.hasOwnProperty.call(commands, commandName)
+                ) {
                     // Save the command to a variable.
                     const command = commands[commandName]
 
                     // Set the member to be consistent between DMChannel and TextChannel
-                    const member = message.channel.type === 'dm'
-                        ? sub.create.member(message.author)
-                        : message.member
+                    const member =
+                        message.channel.type === 'dm'
+                            ? sub.create.member(message.author)
+                            : message.member
 
                     // Test that the users has the proper permissions to run the command.
                     if (sub.utils.hasPermissions(member, command.permissions)) {
                         // Run the command.
-                        await command.exec(message, args, message.channel, member, client, config, sub)
+                        await command.exec(
+                            message,
+                            args,
+                            message.channel,
+                            member,
+                            client,
+                            config,
+                            sub
+                        )
                     } else {
                         throw new InsufficientPermissionsError(
                             'CommandListener',
