@@ -1,3 +1,8 @@
+/*
+ * Gabe Dunn 2020
+ * Stats command
+ */
+
 import { CommandInterface } from '../types/interfaces/CommandInterface'
 import {
     Client,
