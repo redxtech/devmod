@@ -36,6 +36,7 @@ export class Create extends Submodule {
         title: string,
         description: string | false,
         colour: Colour,
+        author: User | GuildMember | false,
         rest: Partial<MessageEmbed> = {}
     ): { embed: Partial<MessageEmbed> } | string {
         return !this.config.compactMessages
@@ -44,6 +45,7 @@ export class Create extends Submodule {
                       title,
                       description: description || undefined,
                       color: colour,
+                      author: author ? this.author(author) : undefined,
                       ...rest
                   }
               }
@@ -54,7 +56,7 @@ export class Create extends Submodule {
     public errorMessage(
         error: DevmodError
     ): { embed: Partial<MessageEmbed> } | string {
-        return this.message(error.name, error.message, red, {
+        return this.message(error.name, error.message, red, false, {
             fields: Object.entries(error).map(field => {
                 return {
                     name: `${capitalize(field[0])}:`,

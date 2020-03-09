@@ -43,8 +43,8 @@ export const about: CommandInterface = {
             ease of use, and was reworked from the ground up in an effort to make
             the bot more stable.`,
                 blue,
+                member,
                 {
-                    author: sub.create.author(member),
                     fields: [
                         {
                             name: 'Author:',

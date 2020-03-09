@@ -35,15 +35,12 @@ export const ping: CommandInterface = {
         await deleteMessage(message)
 
         const sent = await channel.send(
-            sub.create.message('Ping', 'Ping!', blue, {
-                author: sub.create.author(member)
-            })
+            sub.create.message('Ping', 'Ping!', blue, member)
         )
 
         // Edit the message.
         return sent.edit(
-            sub.create.message('Ping', 'Ping!', blue, {
-                author: sub.create.author(member),
+            sub.create.message('Ping', 'Ping!', blue, member, {
                 fields: [
                     {
                         name: 'Round Trip Time:',

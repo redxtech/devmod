@@ -30,8 +30,7 @@ export const stats: CommandInterface = {
     ) {
         await deleteMessage(message)
         return channel.send(
-            sub.create.message('Stats', false, blue, {
-                author: sub.create.author(member),
+            sub.create.message('Stats', false, blue, member, {
                 fields: [
                     {
                         name: `${config.guild.name}:`,
