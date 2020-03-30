@@ -14,10 +14,15 @@ export const hydrateChannels = (
     guild: Guild,
     channels: ConfigChannelsInterface
 ): LiveConfigChannelsInterface => {
+    // Initialize the hydrated channels object
     const hydrated: LiveConfigChannelsInterface = {}
 
+    // For each channel ID in channels, find the channel object in the guild and add it to the hydrated object
     for (const channel of Object.keys(channels)) {
+        // Resolve the channel from the guild
         hydrated[channel] = guild.channels.resolve(channels[channel])
+
+        // Throw an error if it doesn't exist
         if (hydrated[channel] == null) {
             throw new NullChannelError(
                 'Hydration',

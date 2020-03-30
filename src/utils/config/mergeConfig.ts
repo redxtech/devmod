@@ -9,6 +9,7 @@ import { commands } from '../../commands'
 import { join } from 'path'
 
 export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
+    // Set return a config object with default values replaced by user specified values.
     return {
         token: config.token, // Discord API token for the bot.
         guildID: config.guildID, // Discord ID of the server your bot is running on.

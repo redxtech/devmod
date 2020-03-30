@@ -14,6 +14,7 @@ export const log = (area, message) => {
     console.log(`${green(`[${area}]`)} ${blue(message)}`)
 }
 
+// Log a nice looking error message
 export const logError = (error: DevmodError) => {
     console.error(
         `${green(`[${error.area || 'Uncaught'}]`)} ${redBright(

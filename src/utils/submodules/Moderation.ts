@@ -16,4 +16,12 @@ export class Moderation extends Submodule {
     public removeRole(member: GuildMember, role: Role): Promise<GuildMember> {
         return member.roles.remove(role)
     }
+
+    // TODO: warn (& clear warns) functions
+
+    // TODO: (un)ban functions
+
+    // TODO: (un)mute functions
+
+    // TODO: (un)lock channel functions
 }
