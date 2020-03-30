@@ -7,13 +7,20 @@ import { ConfigInterface } from '../../types/interfaces/ConfigInterface'
 import { UserConfigInterface } from '../../types/interfaces/UserConfigInterface'
 import { join } from 'path'
 
-export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
+export const mergeConfigs = (
+    ...configs: UserConfigInterface[]
+): ConfigInterface => {
+    const config = Object.assign({}, ...configs)
+
     return {
         token: config.token, // Discord API token for the bot.
         guildID: config.guildID, // Discord ID of the server your bot is running on.
         prefix: config.prefix || '.', // Prefix to identify commands.
         loadCommandListener: config.loadCommandListener || true, // Whether or not to load the command listener.
-        populateCommands: Object.prototype.hasOwnProperty.call(config, 'populateCommands')
+        populateCommands: Object.prototype.hasOwnProperty.call(
+            config,
+            'populateCommands'
+        )
             ? config.populateCommands
             : true, // Whether or not to load in all the default commands
         commands: [], // Empty array of commands.

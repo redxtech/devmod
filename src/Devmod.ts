@@ -21,6 +21,7 @@ import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 import { DevmodError } from './types/errors/DevmodError'
 import { CommandInterface } from './types/interfaces/CommandInterface'
 import { commands as defaultCommands } from './commands'
+import userConfig from '../config'
 
 export class Devmod {
     // The client, config, and processes are all accessible from anywhere within the class
@@ -31,9 +32,15 @@ export class Devmod {
     public readonly sub: Partial<SubmodulesInterface> = {}
 
     // The bot will be connected once the constructor is called
-    constructor (commands: CommandInterface[], processes: ProcessInterface[], config: UserConfigInterface) {
-        this.config = mergeConfigs(config)
-        this.config.commands = this.config.populateCommands ? [...defaultCommands, ...commands] : commands
+    constructor(
+        commands: CommandInterface[],
+        processes: ProcessInterface[],
+        config: UserConfigInterface
+    ) {
+        this.config = mergeConfigs(config, userConfig)
+        this.config.commands = this.config.populateCommands
+            ? [...defaultCommands, ...commands]
+            : commands
 
         this.client = new Client()
 
@@ -43,9 +50,15 @@ export class Devmod {
             log('Init', `Logged in as ${this.client.user.tag}.`)
 
             // Initialize all the processes.
-            for (const process of this.config.loadCommandListener ? [commandListener, ...processes] : processes) {
+            for (const process of this.config.loadCommandListener
+                ? [commandListener, ...processes]
+                : processes) {
                 log('Init', `Initialized ${process.name}!`)
-                process.init(this.client, this.config, this.sub as SubmodulesInterface)
+                process.init(
+                    this.client,
+                    this.config,
+                    this.sub as SubmodulesInterface
+                )
             }
         })
 
@@ -58,14 +71,19 @@ export class Devmod {
         this.sub.utils = new Utils(this.client, this.config)
 
         // Direct errors to be handled by the error handling function (uncaught exceptions left untouched for now)
-        process.on('unhandledRejection', (e: DevmodError) => handleErrors(e, this.config, this.sub as SubmodulesInterface))
+        process.on('unhandledRejection', (e: DevmodError) =>
+            handleErrors(e, this.config, this.sub as SubmodulesInterface)
+        )
         // process.on('uncaughtException', handleErrors)
     }
 
     // Hydrates the guild, channels, and roles properties in the config
-    private hydrateConfig (): void {
+    private hydrateConfig(): void {
         this.config.guild = hydrateGuild(this.client, this.config.guildID)
-        this.config.channels = hydrateChannels(this.config.guild, this.config.channelIDs)
+        this.config.channels = hydrateChannels(
+            this.config.guild,
+            this.config.channelIDs
+        )
         this.config.roles = hydrateRoles(this.config.guild, this.config.roleIDs)
     }
 }

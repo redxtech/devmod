@@ -29,5 +29,6 @@ export const logErrorToChannel = (
     sub: SubmodulesInterface
 ): Promise<Message> => {
     logError(error)
-    return config.channels.errors.send(sub.create.errorMessage(error))
+    if (config.channels)
+        return config.channels.errors.send(sub.create.errorMessage(error))
 }
