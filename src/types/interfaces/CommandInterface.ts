@@ -21,6 +21,7 @@ export interface CommandInterface {
     category: 'admin' | 'fun' | 'moderation' | 'utils' | 'info'
     description: string
     permissions: PermissionResolvable
+    usage?: string
     exec: (
         message: Message | PartialMessage,
         args: string[],
