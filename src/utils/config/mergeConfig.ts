@@ -5,6 +5,7 @@
 
 import { ConfigInterface } from '../../types/interfaces/ConfigInterface'
 import { UserConfigInterface } from '../../types/interfaces/UserConfigInterface'
+import { commands } from '../../commands'
 import { join } from 'path'
 
 export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
@@ -12,11 +13,7 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
         token: config.token, // Discord API token for the bot.
         guildID: config.guildID, // Discord ID of the server your bot is running on.
         prefix: config.prefix || '.', // Prefix to identify commands.
-        loadCommandListener: config.loadCommandListener || true, // Whether or not to load the command listener.
-        populateCommands: Object.prototype.hasOwnProperty.call(config, 'populateCommands')
-            ? config.populateCommands
-            : true, // Whether or not to load in all the default commands
-        commands: [], // Empty array of commands.
+        commands, // Array of commands.
         compactMessages: config.compactMessages || false, // Whether or not to use compact messages.
         messageTTL: config.messageTTL || 45, // Amount of time in seconds to wait before deleting large help messages.
         dbFile: config.dbFile || join(__dirname, '..', '..', '..', 'devmod.db'), // Absolute path for the database file.
