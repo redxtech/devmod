@@ -1,6 +1,6 @@
 import { UserConfigInterface } from './src/types/interfaces/UserConfigInterface'
 
-export const config: UserConfigInterface = {
+export default <UserConfigInterface>{
     token: '',
     guildID: '',
     prefix: '.',

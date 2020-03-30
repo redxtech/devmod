@@ -189,3 +189,7 @@ tmp/
 temp/
 
 # End of https://www.gitignore.io/api/node,jetbrains
+
+
+# Devmod config
+config.ts

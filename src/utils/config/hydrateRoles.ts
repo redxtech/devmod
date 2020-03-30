@@ -26,7 +26,7 @@ export const hydrateRoles = (
         if (hydrated[role] == null) {
             throw new NullRoleError(
                 'Hydration',
-                `A channel is null (${role}:${roles[role]})`
+                `A role is null (${role}:${roles[role]})`
             )
         }
     }
