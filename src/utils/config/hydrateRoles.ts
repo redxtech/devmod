@@ -4,16 +4,25 @@
  */
 
 import { Guild } from 'discord.js'
-import { ConfigRoleInterface, LiveConfigRoleInterface } from '../../types/interfaces/ConfigRolesInterface'
+import {
+    ConfigRoleInterface,
+    LiveConfigRoleInterface
+} from '../../types/interfaces/ConfigRolesInterface'
 import { NullRoleError } from '../../types/errors/NullRoleError'
 
-export const hydrateRoles = (guild: Guild, roles: ConfigRoleInterface): LiveConfigRoleInterface => {
+export const hydrateRoles = (
+    guild: Guild,
+    roles: ConfigRoleInterface
+): LiveConfigRoleInterface => {
     const hydrated: LiveConfigRoleInterface = {}
 
     for (const role of Object.keys(roles)) {
         hydrated[role] = guild.roles.resolve(roles[role])
         if (hydrated[role] == null) {
-            throw new NullRoleError('Hydration', `A channel is null (${role}:${roles[role]})`)
+            throw new NullRoleError(
+                'Hydration',
+                `A channel is null (${role}:${roles[role]})`
+            )
         }
     }
 

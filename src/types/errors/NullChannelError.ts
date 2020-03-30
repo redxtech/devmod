@@ -7,7 +7,7 @@ import { DevmodError } from './DevmodError'
 import { Message } from 'discord.js'
 
 export class NullChannelError extends DevmodError {
-    constructor (area: string, message: string) {
+    constructor(area: string, message: string) {
         super('NullChannelError', area, message, { deleted: true } as Message)
     }
 }

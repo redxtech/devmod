@@ -3,9 +3,7 @@
  * Function to expand the commands list to an object with proper aliases as keys
  */
 
-import { logError } from './log'
 import { CommandInterface } from '../types/interfaces/CommandInterface'
-import { MessageEmbed } from 'discord.js'
 
 export const expandCommands = (
     commands: CommandInterface[]

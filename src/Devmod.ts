@@ -25,36 +25,41 @@ export class Devmod {
     public readonly client: Client
     public readonly config: ConfigInterface
 
-    // Create the submodules field
+    // Create the submodules field empty for now
     public readonly sub: Partial<SubmodulesInterface> = {}
 
     // The bot will be connected once the constructor is called
     constructor(config: UserConfigInterface) {
+        // Merge the user specified config with the default config and add it to the class
         this.config = mergeConfigs(config)
 
-        // Process list
-        const processes: ProcessInterface[] = [commandListener]
+        // Create a list of processes to be run with the bot
+        const processes: ProcessInterface[] = [
+            commandListener
+            // other listeners to come
+        ]
 
+        // Initialize the discord.js client
         this.client = new Client()
 
+        // Once the bot's ready run all of the initialization
         this.client.on('ready', () => {
-            // Once the bot has logged in, hydrate the config and log a successful login
+            // Once the bot has logged in, hydrate the config
             this.hydrateConfig()
-            log('Init', `Logged in as ${this.client.user.tag}.`)
 
-            // Initialize all the processes.
+            // Loop through the processes and initialize them and log it
             for (const process of processes) {
-                log('Init', `Initialized ${process.name}!`)
                 process.init(
                     this.client,
                     this.config,
                     this.sub as SubmodulesInterface
                 )
+                log('Init', `Initialized ${process.name}!`)
             }
-        })
 
-        // Log the bot in
-        this.client.login(this.config.token).then()
+            // Show that the bot has logged in successfully
+            log('Init', `Logged in as ${this.client.user.tag}.`)
+        })
 
         // Initialize and assign the submodules
         this.sub.create = new Create(this.client, this.config)
@@ -66,6 +71,9 @@ export class Devmod {
             handleErrors(e, this.config, this.sub as SubmodulesInterface)
         )
         // process.on('uncaughtException', handleErrors)
+
+        // Log the bot in
+        this.client.login(this.config.token).then()
     }
 
     // Hydrates the guild, channels, and roles properties in the config

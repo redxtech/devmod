@@ -16,7 +16,7 @@ export class Submodule {
     public readonly sub: Partial<SubmodulesInterface> = {}
 
     // Passes the bot's instance and config
-    constructor (client: Client, config: ConfigInterface) {
+    constructor(client: Client, config: ConfigInterface) {
         this.client = client
         this.config = config
     }

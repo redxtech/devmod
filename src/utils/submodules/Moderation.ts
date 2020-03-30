@@ -6,14 +6,14 @@
 import { GuildMember, Role } from 'discord.js'
 import { Submodule } from './Submodule'
 
-export class Moderation extends Submodule{
+export class Moderation extends Submodule {
     // Add a role to a member
-    public addRole (member: GuildMember, role: Role): Promise<GuildMember> {
+    public addRole(member: GuildMember, role: Role): Promise<GuildMember> {
         return member.roles.add(role)
     }
 
     // Remove a role from a member
-    public removeRole (member: GuildMember, role: Role): Promise<GuildMember> {
+    public removeRole(member: GuildMember, role: Role): Promise<GuildMember> {
         return member.roles.remove(role)
     }
 }

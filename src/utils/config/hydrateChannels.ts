@@ -4,16 +4,25 @@
  */
 
 import { Guild } from 'discord.js'
-import { ConfigChannelsInterface, LiveConfigChannelsInterface } from '../../types/interfaces/ConfigChannelsInterface'
+import {
+    ConfigChannelsInterface,
+    LiveConfigChannelsInterface
+} from '../../types/interfaces/ConfigChannelsInterface'
 import { NullChannelError } from '../../types/errors/NullChannelError'
 
-export const hydrateChannels = (guild: Guild, channels: ConfigChannelsInterface): LiveConfigChannelsInterface => {
+export const hydrateChannels = (
+    guild: Guild,
+    channels: ConfigChannelsInterface
+): LiveConfigChannelsInterface => {
     const hydrated: LiveConfigChannelsInterface = {}
 
     for (const channel of Object.keys(channels)) {
         hydrated[channel] = guild.channels.resolve(channels[channel])
         if (hydrated[channel] == null) {
-            throw new NullChannelError('Hydration', `A channel is null (${channel}:${channels[channel]})`)
+            throw new NullChannelError(
+                'Hydration',
+                `A channel is null (${channel}:${channels[channel]})`
+            )
         }
     }
 
