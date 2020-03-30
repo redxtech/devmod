@@ -15,7 +15,7 @@ const main = () => {
     let userConfig
 
     try {
-        userConfig = require('../config').config as UserConfigInterface
+        userConfig = require('../config').default as UserConfigInterface
     } catch {
         return logError(new MissingConfigError('Init', 'No config.ts file'))
     }
