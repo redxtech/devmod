@@ -6,12 +6,21 @@
 import { Devmod } from './Devmod'
 import { config } from 'dotenv'
 import { UserConfigInterface } from './types/interfaces/UserConfigInterface'
-import { config as userConfig } from '../config'
+import { logError } from './utils/log'
+import { MissingConfigError } from './types/errors/MissingConfigError'
 
 config()
 
 const main = () => {
-    const bot = new Devmod(userConfig as UserConfigInterface)
+    let userConfig
+
+    try {
+        userConfig = require('../config').config as UserConfigInterface
+    } catch {
+        return logError(new MissingConfigError('Init', 'No config.ts file'))
+    }
+
+    new Devmod(userConfig)
 }
 
 main()
