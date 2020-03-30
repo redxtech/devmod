@@ -13,8 +13,6 @@ export interface UserConfigInterface {
     token: string
     guildID: GuildResolvable
     prefix?: string
-    loadCommandListener?: boolean
-    populateCommands?: boolean
     compactMessages?: boolean
     messageTTL?: number
     dbFile?: string
