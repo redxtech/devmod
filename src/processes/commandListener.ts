@@ -14,6 +14,7 @@ export const commandListener: ProcessInterface = {
     name: 'CommandListener',
     init(client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
         client.on('message', async (message: Message) => {
+            // If the message is in either a text or dm channel and it starts with the prefix, continue
             if (
                 ['text', 'dm'].some(
                     channelType => message.channel.type == channelType
@@ -23,10 +24,10 @@ export const commandListener: ProcessInterface = {
                 // Separate the entire command after the prefix into args.
                 const args = message.content.substr(1).split(' ')
 
-                // Set the command to the first argument and remove it from the args array.
+                // Set the command name to the first argument and remove it from the args array.
                 const commandName = args.shift()
 
-                // Expand the command list
+                // Expand the command list to include aliases as keys on the object
                 const commands = expandCommands(config.commands)
 
                 // If the command exists, test for permissions and run the command function.
@@ -55,6 +56,7 @@ export const commandListener: ProcessInterface = {
                             sub
                         )
                     } else {
+                        // Throw an error if the command doesn't work
                         throw new InsufficientPermissionsError(
                             'CommandListener',
                             `Insufficient permissions to run command (${commandName} - ${member.user.tag}:${member.user.id})`,

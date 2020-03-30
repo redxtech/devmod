@@ -6,7 +6,10 @@
 import { Client, Guild, GuildResolvable } from 'discord.js'
 import { NullGuildError } from '../../types/errors/NullGuildError'
 
-export const hydrateGuild = (client: Client, guildID: GuildResolvable): Guild => {
+export const hydrateGuild = (
+    client: Client,
+    guildID: GuildResolvable
+): Guild => {
     const guild = client.guilds.resolve(guildID)
     if (guild == null) {
         throw new NullGuildError('Hydration', `A guild is null (${guildID})`)
