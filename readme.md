@@ -1,4 +1,6 @@
 # devmod-core
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fredxtech%2Fdevmod-core.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fredxtech%2Fdevmod-core?ref=badge_shield)
+
 > The core of devmod's 6th iteration.
 
 devmod is a project started by and for the [devcord](https://devcord.com)
@@ -15,3 +17,7 @@ the bot once it's ready for use.
 
 ## Author
 **devmod** © [Gabe Dunn](https://github.com/redxtech), Released under the [MIT](./license.md) License.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fredxtech%2Fdevmod-core.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fredxtech%2Fdevmod-core?ref=badge_large)
