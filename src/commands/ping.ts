@@ -44,8 +44,10 @@ export const ping: CommandInterface = {
                 fields: [
                     {
                         name: 'Round Trip Time:',
-                        value: `${sent.createdAt.getTime() -
-                            message.createdAt.getTime()}ms.`,
+                        value: `${
+                            sent.createdAt.getTime() -
+                            message.createdAt.getTime()
+                        }ms.`,
                         inline: false
                     }
                 ]

@@ -8,8 +8,8 @@
   "private": false,
   "scripts": {
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
-    "lint": "prettier --check ./src/**/*.ts",
-    "lint:fix": "prettier --check ./src/**/*.ts --write"
+    "lint": "prettier --check ./src",
+    "lint:fix": "prettier --write ./src"
   },
   "husky": {
     "hooks": {

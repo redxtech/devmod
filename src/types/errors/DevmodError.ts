@@ -21,10 +21,7 @@ export class DevmodError extends Error {
 
         // Try to react to the message if it isn't already deleted
         if (!messageToReact.deleted) {
-            messageToReact
-                .react('❌')
-                .then()
-                .catch()
+            messageToReact.react('❌').then().catch()
         }
     }
 }
