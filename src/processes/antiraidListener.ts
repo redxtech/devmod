@@ -33,7 +33,7 @@ export const antiraidListener: ProcessInterface = {
 
             if (
                 mentionedRoles > 1 ||
-                mentionedUsers > 5 ||
+                mentionedUsers > 2 ||
                 mentionedUsers + mentionedRoles > 2
             ) {
                 lastKnownTimestamp
@@ -59,7 +59,7 @@ export const antiraidListener: ProcessInterface = {
             await message.delete()
             message.member.roles.add(mutedRole)
             message.channel.send(
-                `<@${message.author.id}> messed with the honk, so he got the bonk. (<@${staffRole}>)`
+                `<@${message.author.id}> messed with the honk, so he got the bonk. (<@&${staffRole}>)`
             )
         }
     }
