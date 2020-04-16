@@ -26,26 +26,34 @@ export const antiraidListener: ProcessInterface = {
         const seniorRole = config.roleIDs.senior
 
         // DEBUG: Debug console log for role comparison
-        console.log(staffRole, seniorRole)
+        // console.log(staffRole, seniorRole)
 
         client.on('message', async (message: Message) => {
             const lastKnownTimestamp = mentions.get(message.author.id) ?? null
 
-            // message.member.roles
+            const userRoles = message.member.roles.cache
 
-            const {
-                users: { size: mentionedUsers },
-                roles: { size: mentionedRoles }
-            } = message.mentions
+            // Staff role is not used as of now
+            // const staff = userRoles.find(role => role.id === staffRole) != undefined
+            const senior =
+                userRoles.find(role => role.id === seniorRole) != undefined
 
-            if (
-                mentionedRoles > 1 ||
-                mentionedUsers > 2 ||
-                mentionedUsers + mentionedRoles > 2
-            ) {
-                lastKnownTimestamp
-                    ? checkOffender(message, lastKnownTimestamp)
-                    : addOffenderToList(message)
+            // TODO: Check if they are not staff
+            if (!senior) {
+                const {
+                    users: { size: mentionedUsers },
+                    roles: { size: mentionedRoles }
+                } = message.mentions
+
+                if (
+                    mentionedRoles > 1 ||
+                    mentionedUsers > 2 ||
+                    mentionedUsers + mentionedRoles > 2
+                ) {
+                    lastKnownTimestamp
+                        ? checkOffender(message, lastKnownTimestamp)
+                        : addOffenderToList(message)
+                }
             }
         })
 
