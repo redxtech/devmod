@@ -24,6 +24,9 @@ export default <UserConfigInterface>{
     },
     roleIDs: {
         muted: '',
-        verified: ''
+        verified: '',
+        staff: '',
+        senior: '',
+        mvp: ''
     }
 }
