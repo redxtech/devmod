@@ -17,14 +17,21 @@ export const antiraidListener: ProcessInterface = {
         const mutedRole = config.roleIDs.muted
 
         // TODO: fix staffRole to mention properly, cannot be string
-        //const staffRole = config.roleIDs.staff
-        const staffRole = 662405675107876864
+        // NOTE: Pull from config, same role is achieved
+        const staffRole = config.roleIDs.staff
+        // const staffRole = 662405675107876864
+
+        // TODO: escape check if user is senior
+        // NOTE: Get role from config
+        const seniorRole = config.roleIDs.senior
+
+        // DEBUG: Debug console log for role comparison
+        console.log(staffRole, seniorRole)
 
         client.on('message', async (message: Message) => {
             const lastKnownTimestamp = mentions.get(message.author.id) ?? null
 
-            // TODO: escape check if user is senior
-            //message.member.roles
+            // message.member.roles
 
             const {
                 users: { size: mentionedUsers },
