@@ -30,6 +30,7 @@ export const antiraidListener: ProcessInterface = {
         // console.log(staffRole, seniorRole)
 
         client.on('message', async (message: Message) => {
+            if (message.author.bot) return
             const lastKnownTimestamp = mentions.get(message.author.id) ?? null
 
             const userRoleIds = message.member.roles.cache.map(r => r.id)
