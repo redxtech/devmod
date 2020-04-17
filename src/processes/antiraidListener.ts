@@ -16,29 +16,44 @@ export const antiraidListener: ProcessInterface = {
         const mentions = new Map()
         const mutedRole = config.roleIDs.muted
 
-        // TODO: fix staffRole to mention properly, cannot be string
-        //const staffRole = config.roleIDs.staff
-        const staffRole = 662405675107876864
+        // NOTE: Pull from config, same role is achieved
+        const staffRoleId = config.roleIDs.staff
+
+        // NOTE: Get role from config
+        const seniorRoleId = config.roleIDs.senior
+
+        const maxMentionedRoles = config.antiRaidRoles
+        const maxMentionedMemebers = config.antiRaidMembers
+        const maxMentionedEverything = maxMentionedRoles + maxMentionedMemebers
+
+        // DEBUG: Debug console log for role comparison
+        // console.log(staffRole, seniorRole)
 
         client.on('message', async (message: Message) => {
             const lastKnownTimestamp = mentions.get(message.author.id) ?? null
 
-            // TODO: escape check if user is senior
-            //message.member.roles
+            const userRoleIds = message.member.roles.cache.map(r => r.id)
 
-            const {
-                users: { size: mentionedUsers },
-                roles: { size: mentionedRoles }
-            } = message.mentions
+            const isStaff = userRoleIds.find(r => r === staffRoleId)
+            const isSenior = userRoleIds.find(r => r === seniorRoleId)
 
-            if (
-                mentionedRoles > 1 ||
-                mentionedUsers > 2 ||
-                mentionedUsers + mentionedRoles > 2
-            ) {
-                lastKnownTimestamp
-                    ? checkOffender(message, lastKnownTimestamp)
-                    : addOffenderToList(message)
+            if (isStaff || isSenior) {
+                return
+            } else {
+                const {
+                    users: { size: mentionedUsers },
+                    roles: { size: mentionedRoles }
+                } = message.mentions
+
+                if (
+                    mentionedRoles > maxMentionedRoles ||
+                    mentionedUsers > maxMentionedMemebers ||
+                    mentionedUsers + mentionedRoles > maxMentionedEverything
+                ) {
+                    lastKnownTimestamp
+                        ? checkOffender(message, lastKnownTimestamp)
+                        : addOffenderToList(message)
+                }
             }
         })
 
@@ -58,8 +73,11 @@ export const antiraidListener: ProcessInterface = {
         const triggerAntiraid = async message => {
             await message.delete()
             message.member.roles.add(mutedRole)
+            addOffenderToList(message)
+
+            // TODO: Send message to #mod-log
             message.channel.send(
-                `<@${message.author.id}> messed with the honk, so he got the bonk. (<@&${staffRole}>)`
+                `<@${message.author.id}> messed with the honk, so he got the bonk. (<@&${staffRoleId}>)`
             )
         }
     }
