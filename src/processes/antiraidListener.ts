@@ -34,7 +34,6 @@ export const antiraidListener: ProcessInterface = {
 
             const userRoleIds = message.member.roles.cache.map(r => r.id)
 
-            // Staff role is not used as of now
             const isStaff = userRoleIds.find(r => r === staffRoleId)
             const isSenior = userRoleIds.find(r => r === seniorRoleId)
 
