@@ -23,6 +23,10 @@ export const antiraidListener: ProcessInterface = {
         // NOTE: Get role from config
         const seniorRoleId = config.roleIDs.senior
 
+        const maxMentionedRoles = config.antiRaidRoles
+        const maxMentionedMemebers = config.antiRaidMembers
+        const maxMentionedEverything = maxMentionedRoles + maxMentionedMemebers
+
         // DEBUG: Debug console log for role comparison
         // console.log(staffRole, seniorRole)
 
@@ -44,9 +48,9 @@ export const antiraidListener: ProcessInterface = {
                 } = message.mentions
 
                 if (
-                    mentionedRoles > 1 ||
-                    mentionedUsers > 2 ||
-                    mentionedUsers + mentionedRoles > 2
+                    mentionedRoles > maxMentionedRoles ||
+                    mentionedUsers > maxMentionedMemebers ||
+                    mentionedUsers + mentionedRoles > maxMentionedEverything
                 ) {
                     lastKnownTimestamp
                         ? checkOffender(message, lastKnownTimestamp)
@@ -71,7 +75,8 @@ export const antiraidListener: ProcessInterface = {
         const triggerAntiraid = async message => {
             await message.delete()
             message.member.roles.add(mutedRole)
-            // NOTE: This worked in development, should work in production
+            addOffenderToList(message)
+
             // TODO: Send message to #mod-log
             message.channel.send(
                 `<@${message.author.id}> messed with the honk, so he got the bonk. (<@&${staffRoleId}>)`

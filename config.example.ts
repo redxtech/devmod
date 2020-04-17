@@ -9,6 +9,8 @@ export default <UserConfigInterface>{
     dbFile: '',
     autoBan: true,
     autoBanThreshold: 3,
+    antiRaidMembers: 2,
+    antiRaidRoles: 2,
     repTriggers: [],
     repEmote: '',
     activities: ['Serving NaN users!'],
