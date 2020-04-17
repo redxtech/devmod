@@ -17,11 +17,11 @@ export const antiraidListener: ProcessInterface = {
         const mutedRole = config.roleIDs.muted
 
         // NOTE: Pull from config, same role is achieved
-        const staffRole = config.roleIDs.staff
+        const staffRoleId = config.roleIDs.staff
         // const staffRole = 662405675107876864
 
         // NOTE: Get role from config
-        const seniorRole = config.roleIDs.senior
+        const seniorRoleId = config.roleIDs.senior
 
         // DEBUG: Debug console log for role comparison
         // console.log(staffRole, seniorRole)
@@ -29,31 +29,28 @@ export const antiraidListener: ProcessInterface = {
         client.on('message', async (message: Message) => {
             const lastKnownTimestamp = mentions.get(message.author.id) ?? null
 
-            const userRoles = message.member.roles.cache
+            const userRoleIds = message.member.roles.cache.map(r => r.id)
 
             // Staff role is not used as of now
-            const staff =
-                userRoles.find(role => role.id === staffRole) != undefined
-            const senior =
-                userRoles.find(role => role.id === seniorRole) != undefined
+            const isStaff = userRoleIds.find(r => r === staffRoleId)
+            const isSenior = userRoleIds.find(r => r === seniorRoleId)
 
-            // NOTE: Cant combine the two roles else theres weird operator logic
-            if (!senior) {
-                if (!staff) {
-                    const {
-                        users: { size: mentionedUsers },
-                        roles: { size: mentionedRoles }
-                    } = message.mentions
+            if (isStaff || isSenior) {
+                return
+            } else {
+                const {
+                    users: { size: mentionedUsers },
+                    roles: { size: mentionedRoles }
+                } = message.mentions
 
-                    if (
-                        mentionedRoles > 1 ||
-                        mentionedUsers > 2 ||
-                        mentionedUsers + mentionedRoles > 2
-                    ) {
-                        lastKnownTimestamp
-                            ? checkOffender(message, lastKnownTimestamp)
-                            : addOffenderToList(message)
-                    }
+                if (
+                    mentionedRoles > 1 ||
+                    mentionedUsers > 2 ||
+                    mentionedUsers + mentionedRoles > 2
+                ) {
+                    lastKnownTimestamp
+                        ? checkOffender(message, lastKnownTimestamp)
+                        : addOffenderToList(message)
                 }
             }
         })
@@ -77,7 +74,7 @@ export const antiraidListener: ProcessInterface = {
             // NOTE: This worked in development, should work in production
             // TODO: Send message to #mod-log
             message.channel.send(
-                `<@${message.author.id}> messed with the honk, so he got the bonk. (<@&${staffRole}>)`
+                `<@${message.author.id}> messed with the honk, so he got the bonk. (<@&${staffRoleId}>)`
             )
         }
     }
