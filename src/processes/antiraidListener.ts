@@ -18,7 +18,6 @@ export const antiraidListener: ProcessInterface = {
 
         // NOTE: Pull from config, same role is achieved
         const staffRoleId = config.roleIDs.staff
-        // const staffRole = 662405675107876864
 
         // NOTE: Get role from config
         const seniorRoleId = config.roleIDs.senior
