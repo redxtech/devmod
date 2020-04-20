@@ -31,8 +31,6 @@ export const antiraidListener: ProcessInterface = {
 
         client.on('message', async (message: Message) => {
             if (message.author.bot || message.channel.type === 'dm') return
-            console.log(message.channel.type)
-            console.log('HERE')
 
             const lastKnownTimestamp = mentions.get(message.author.id) ?? null
 
