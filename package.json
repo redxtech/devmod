@@ -20,7 +20,7 @@
     "chalk": "^4.0.0",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "moment": "^2.26.0"
+    "moment": "^2.27.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.5",
