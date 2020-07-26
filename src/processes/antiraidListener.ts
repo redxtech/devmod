@@ -20,7 +20,8 @@ export const antiraidListener: ProcessInterface = {
         const staffRoleId = config.roleIDs.staff
 
         // NOTE: Get role from config
-        const seniorRoleId = config.roleIDs.senior
+        // Deprecated
+        // const seniorRoleId = config.roleIDs.senior
 
         const maxMentionedRoles = config.antiRaidRoles
         const maxMentionedMemebers = config.antiRaidMembers
@@ -37,9 +38,8 @@ export const antiraidListener: ProcessInterface = {
             const userRoleIds = message.member.roles.cache.map(r => r.id)
 
             const isStaff = userRoleIds.find(r => r === staffRoleId)
-            const isSenior = userRoleIds.find(r => r === seniorRoleId)
 
-            if (isStaff || isSenior) {
+            if (isStaff) {
                 return
             } else {
                 const {
