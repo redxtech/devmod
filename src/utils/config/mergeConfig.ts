@@ -38,8 +38,7 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
         roleIDs: {
             muted: config.roleIDs.muted, // ID of the role to apply to muted users.
             verified: config.roleIDs.verified, // ID of the role to apply to verified users.
-            staff: config.roleIDs.staff, // ID of the role for staff on the server.
-            senior: config.roleIDs.senior //ID of the role for senior members of the server
+            staff: config.roleIDs.staff // ID of the role for staff on the server.
         }
     }
 }
