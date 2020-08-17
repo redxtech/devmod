@@ -8,8 +8,8 @@
   "private": false,
   "scripts": {
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
-    "lint": "prettier --check ./src/**/*.ts",
-    "lint:fix": "prettier --check ./src/**/*.ts --write"
+    "lint": "prettier --check ./src",
+    "lint:fix": "prettier --write ./src"
   },
   "husky": {
     "hooks": {
@@ -17,20 +17,20 @@
     }
   },
   "dependencies": {
-    "chalk": "^3.0.0",
-    "discord.js": "^12.0.1",
+    "chalk": "^4.0.0",
+    "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "moment": "^2.24.0"
+    "moment": "^2.26.0"
   },
   "devDependencies": {
-    "@types/node": "^13.7.7",
-    "@typescript-eslint/eslint-plugin": "^2.22.0",
-    "husky": "^4.2.3",
-    "nodemon": "^2.0.2",
-    "prettier": "^1.19.1",
+    "@types/node": "^14.0.5",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "husky": "^4.2.5",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.3"
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3"
   },
   "nodemonConfig": {
     "ignore": [

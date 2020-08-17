@@ -19,4 +19,6 @@ export class Utils extends Submodule {
     ): boolean {
         return member.hasPermission(permissions)
     }
+
+    // TODO: build info & roles functions
 }

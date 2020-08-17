@@ -19,11 +19,9 @@ export class DevmodError extends Error {
         this.area = area
         this.message = message
 
+        // Try to react to the message if it isn't already deleted
         if (!messageToReact.deleted) {
-            messageToReact
-                .react('❌')
-                .then()
-                .catch()
+            messageToReact.react('❌').then().catch()
         }
     }
 }
