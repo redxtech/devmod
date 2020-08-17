@@ -27,6 +27,8 @@ export interface ConfigInterface {
     dbFile: string
     autoBan: boolean
     autoBanThreshold: number
+    antiRaidMembers: number
+    antiRaidRoles: number
     repTriggers: string[]
     repEmote: string
     activities: string[]

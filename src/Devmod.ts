@@ -16,7 +16,7 @@ import { log } from './utils/log'
 import { Create } from './utils/submodules/Create'
 import { Moderation } from './utils/submodules/Moderation'
 import { Utils } from './utils/submodules/Utils'
-import { commandListener } from './processes/commandListener'
+import { antiraidListener } from './processes/antiraidListener'
 import { SubmodulesInterface } from './types/interfaces/SubmodulesInterface'
 import { DevmodError } from './types/errors/DevmodError'
 
@@ -35,7 +35,7 @@ export class Devmod {
 
         // Create a list of processes to be run with the bot
         const processes: ProcessInterface[] = [
-            commandListener
+            antiraidListener
             // other listeners to come
         ]
 

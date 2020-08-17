@@ -20,6 +20,8 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
         dbFile: config.dbFile || join(__dirname, '..', '..', '..', 'devmod.db'), // Absolute path for the database file.
         autoBan: config.autoBan || true, // Whether or not to enforce auto-banning after a specified number of warnings.
         autoBanThreshold: config.autoBanThreshold || 3, // Amount of warnings to warrant an auto-ban if enabled.
+        antiRaidMembers: config.antiRaidMembers || 1, // Amount of members that are allowed to be pinged in a message
+        antiRaidRoles: config.antiRaidRoles || 2, // Amount of roles that are allowed to be pinged in a message
         repTriggers: config.repTriggers || ['thanks', 'kudos'], // List of triggers for thanking users.
         repEmote: config.repEmote || '👍', // The emoji to prefix the thanks received message with.
         activities: config.activities || ['Serving NaN users!'], // List of activities for the bot to show as a status.
@@ -35,7 +37,8 @@ export const mergeConfigs = (config: UserConfigInterface): ConfigInterface => {
         },
         roleIDs: {
             muted: config.roleIDs.muted, // ID of the role to apply to muted users.
-            verified: config.roleIDs.verified // ID of the role to apply to verified users.
+            verified: config.roleIDs.verified, // ID of the role to apply to verified users.
+            staff: config.roleIDs.staff // ID of the role for staff on the server.
         }
     }
 }
