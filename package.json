@@ -1,19 +1,17 @@
 {
-  "name": "devmod-core",
+  "name": "devmod",
   "version": "1.0.0",
-  "description": "The core of the devmod bot.",
-  "main": "src/main.ts",
-  "author": "Gabe Dunn <gabe.dunn@shaw.ca>",
+  "description": "A discord bot for moderating servers.",
+  "homepage": "https://github.com/redxtech/devmod#readme",
+  "bugs": "https://github.com/redxtech/devmod/issues",
   "license": "MIT",
+  "author": "Gabe Dunn <gabed@hey.com>",
+  "main": "src/main.ts",
+  "repository": "github:redxtech/devmod",
   "scripts": {
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
     "lint": "prettier --check ./src",
     "lint:fix": "prettier --write ./src"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
   },
   "dependencies": {
     "chalk": "^4.1.0",
@@ -30,6 +28,13 @@
     "pretty-quick": "^2.0.1",
     "ts-node": "^8.10.2",
     "typescript": "^4.0.2"
+  "engines": {
+    "node": ">=12"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "nodemonConfig": {
     "ignore": [
