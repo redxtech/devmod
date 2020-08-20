@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "start": "ts-node ./src/main.ts --strict",
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
     "lint": "prettier --check ./src",
     "lint:fix": "prettier --write ./src"
