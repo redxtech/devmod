@@ -1,7 +1,9 @@
+.yarn
 .env
 .gitignore
+.pnp.js
 .prettierignore
-package.json
+*.json
 license.md
 readme.md
 yarn.lock
