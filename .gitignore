@@ -5,6 +5,14 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+# yarn 2 (berry)
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 # Generated files
 .idea/**/contentModel.xml
 

@@ -5,7 +5,6 @@
   "main": "src/main.ts",
   "author": "Gabe Dunn <gabe.dunn@shaw.ca>",
   "license": "MIT",
-  "private": false,
   "scripts": {
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
     "lint": "prettier --check ./src",
