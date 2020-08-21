@@ -1,7 +1,7 @@
-# devmod-core
+# devmod
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fredxtech%2Fdevmod-core.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2Fredxtech%2Fdevmod-core?ref=badge_small)
-> The core of devmod's 6th iteration.
+> A discord bot for moderating servers.
 
 devmod is a project started by and for the [devcord](https://devcord.com)
 community on discord. It was written in typescript as part of devcord's
