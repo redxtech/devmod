@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
-    "lint": "xo",
-    "lint:fix": "yarn xo --fix"
+    "lint": "NODE_OPTIONS=\"--no-warnings\" yarn xo --reporter stylish",
+    "lint:fix": "NODE_OPTIONS=\"--no-warnings\" yarn xo --fix --reporter stylish"
   },
   "dependencies": {
     "chalk": "^4.1.0",
