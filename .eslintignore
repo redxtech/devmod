@@ -2,6 +2,7 @@
 node_modules
 .editorconfig
 .env
+.eslintrc.js
 .gitignore
 .pnp.js
 .prettierignore

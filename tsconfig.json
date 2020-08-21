@@ -7,5 +7,5 @@
 	"removeComments": true,
 	"strict": false
   },
-  "include": ["./src/**/*"]
+  "include": ["./**/*"]
 }
