@@ -1,7 +1,15 @@
 module.exports = {
-	rules: {},
+	rules: {
+		"@typescript-eslint/no-var-requires": 0,
+	},
 	ignores: [".yarn/**"],
 	semicolon: false,
+	settings: {
+		"import/parsers": {
+			"@typescript-eslint/parser": [".ts", ".tsx"],
+		},
+		"import/resolver": "typescript",
+	},
 	prettier: true,
 	extends: ["plugin:import/typescript"],
 	extensions: ["ts", "js"],

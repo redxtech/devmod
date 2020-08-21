@@ -1564,6 +1564,7 @@ __metadata:
     eslint-config-prettier: ^6.11.0
     eslint-config-xo: ^0.32.1
     eslint-config-xo-typescript: ^0.32.0
+    eslint-import-resolver-typescript: ^2.2.1
     eslint-plugin-ava: ^11.0.0
     eslint-plugin-eslint-comments: ^3.2.0
     eslint-plugin-import: ^2.22.0
@@ -1886,6 +1887,22 @@ __metadata:
     debug: ^2.6.9
     resolve: ^1.13.1
   checksum: 825e34e662c988ece8229e6956a95f12d2fa19265b429e3e3db14e58bfe72e270c999cda0cfc690793ed6e6a3e49ffa8df0e0a8842d668a1f0f7de5ae1aa36f9
+  languageName: node
+  linkType: hard
+
+"eslint-import-resolver-typescript@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "eslint-import-resolver-typescript@npm:2.2.1"
+  dependencies:
+    debug: ^4.1.1
+    glob: ^7.1.6
+    is-glob: ^4.0.1
+    resolve: ^1.17.0
+    tsconfig-paths: ^3.9.0
+  peerDependencies:
+    eslint: "*"
+    eslint-plugin-import: "*"
+  checksum: 323cbfe17531ea7e1c9baa09cb5b951bbfd345235659c76e28e0ed6597964388baac4bbdeeb2b2add552c3e43bd27905a0b86a0aae08b0eb45bea30ad4006175
   languageName: node
   linkType: hard
 
