@@ -1608,12 +1608,15 @@ __metadata:
     eslint-config-standard: ^14.1.1
     eslint-config-standard-with-typescript: ^18.0.2
     eslint-formatter-compassion: ^1.1.2
+    eslint-plugin-eslint-comments: ^3.2.0
     eslint-plugin-import: ^2.22.0
+    eslint-plugin-no-use-extend-native: ^0.5.0
     eslint-plugin-node: ^11.1.0
     eslint-plugin-promise: ^4.2.1
     eslint-plugin-standard: ^4.0.1
-    husky: ">=4"
-    lint-staged: ">=10"
+    eslint-plugin-unicorn: ^21.0.0
+    husky: ^4.2.5
+    lint-staged: ^10.2.11
     moment: ^2.27.0
     nodemon: ^2.0.4
     prettier: ^2.0.5
@@ -3015,7 +3018,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"husky@npm:>=4":
+"husky@npm:^4.2.5":
   version: 4.2.5
   resolution: "husky@npm:4.2.5"
   dependencies:
@@ -3786,7 +3789,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:>=10":
+"lint-staged@npm:^10.2.11":
   version: 10.2.11
   resolution: "lint-staged@npm:10.2.11"
   dependencies:
