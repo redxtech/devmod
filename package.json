@@ -9,9 +9,10 @@
   "main": "src/main.ts",
   "repository": "github:redxtech/devmod",
   "scripts": {
-	"build": "tsc",
+    "build": "tsc",
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
-    "lint": "xo"
+    "lint": "xo",
+    "lint:fix": "yarn xo --fix"
   },
   "dependencies": {
     "chalk": "^4.1.0",
@@ -23,10 +24,22 @@
     "@types/node": "^14.6.0",
     "@typescript-eslint/eslint-plugin": "^3.9.1",
     "@typescript-eslint/parser": "^3.9.1",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-xo": "^0.32.1",
+    "eslint-config-xo-typescript": "^0.32.0",
+    "eslint-plugin-ava": "^11.0.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-no-use-extend-native": "^0.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-unicorn": "^21.0.0",
     "husky": "^4.2.5",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1",
+    "pretty-quick": "^3.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^4.0.2",
     "xo": "^0.33.0"
