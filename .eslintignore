@@ -8,5 +8,5 @@ node_modules
 .prettierignore
 .yarnrc.yml
 *.md
-*.json
+tsconfig.json
 yarn.lock
