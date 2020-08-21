@@ -3,11 +3,11 @@
  * Interface file for approved roles
  */
 
-import { ApprovedRoleInterface } from './ApprovedRoleInterface'
+import { ApprovedRoleInterface } from "./ApprovedRoleInterface";
 
 export interface ApprovedRolesInterface {
-    id: string
-    name: string
-    message: string
-    roles: ApprovedRoleInterface[]
+	id: string;
+	name: string;
+	message: string;
+	roles: ApprovedRoleInterface[];
 }

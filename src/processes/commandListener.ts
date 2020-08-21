@@ -3,68 +3,66 @@
  * Process file for the command listener
  */
 
-import { Client, Message } from 'discord.js'
-import { ConfigInterface } from '../types/interfaces/ConfigInterface'
-import { ProcessInterface } from '../types/interfaces/ProcessInterface'
-import { InsufficientPermissionsError } from '../types/errors/InsufficientPermissionsError'
-import { SubmodulesInterface } from '../types/interfaces/SubmodulesInterface'
-import { expandCommands } from '../utils/expandCommands'
+import { Client, Message } from "discord.js";
+import { ConfigInterface } from "../types/interfaces/ConfigInterface";
+import { ProcessInterface } from "../types/interfaces/ProcessInterface";
+import { InsufficientPermissionsError } from "../types/errors/InsufficientPermissionsError";
+import { SubmodulesInterface } from "../types/interfaces/SubmodulesInterface";
+import { expandCommands } from "../utils/expandCommands";
 
 export const commandListener: ProcessInterface = {
-    name: 'CommandListener',
-    init(client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
-        client.on('message', async (message: Message) => {
-            // If the message is in either a text or dm channel and it starts with the prefix, continue
-            if (
-                ['text', 'dm'].some(
-                    channelType => message.channel.type == channelType
-                ) &&
-                message.content[0] == config.prefix
-            ) {
-                // Separate the entire command after the prefix into args.
-                const args = message.content.substr(1).split(' ')
+	name: "CommandListener",
+	init(client: Client, config: ConfigInterface, sub: SubmodulesInterface) {
+		client.on("message", async (message: Message) => {
+			// If the message is in either a text or dm channel and it starts with the prefix, continue
+			if (
+				["text", "dm"].some(
+					channelType => message.channel.type == channelType
+				) &&
+				message.content[0] == config.prefix
+			) {
+				// Separate the entire command after the prefix into args.
+				const args = message.content.slice(1).split(" ");
 
-                // Set the command name to the first argument and remove it from the args array.
-                const commandName = args.shift()
+				// Set the command name to the first argument and remove it from the args array.
+				const commandName = args.shift();
 
-                // Expand the command list to include aliases as keys on the object
-                const commands = expandCommands(config.commands)
+				// Expand the command list to include aliases as keys on the object
+				const commands = expandCommands(config.commands);
 
-                // If the command exists, test for permissions and run the command function.
-                if (
-                    Object.prototype.hasOwnProperty.call(commands, commandName)
-                ) {
-                    // Save the command to a variable.
-                    const command = commands[commandName]
+				// If the command exists, test for permissions and run the command function.
+				if (Object.prototype.hasOwnProperty.call(commands, commandName)) {
+					// Save the command to a variable.
+					const command = commands[commandName];
 
-                    // Set the member to be consistent between DMChannel and TextChannel
-                    const member =
-                        message.channel.type === 'dm'
-                            ? sub.create.member(message.author)
-                            : message.member
+					// Set the member to be consistent between DMChannel and TextChannel
+					const member =
+						message.channel.type === "dm"
+							? sub.create.member(message.author)
+							: message.member;
 
-                    // Test that the users has the proper permissions to run the command.
-                    if (sub.utils.hasPermissions(member, command.permissions)) {
-                        // Run the command.
-                        await command.exec(
-                            message,
-                            args,
-                            message.channel,
-                            member,
-                            client,
-                            config,
-                            sub
-                        )
-                    } else {
-                        // Throw an error if the command doesn't work
-                        throw new InsufficientPermissionsError(
-                            'CommandListener',
-                            `Insufficient permissions to run command (${commandName} - ${member.user.tag}:${member.user.id})`,
-                            message
-                        )
-                    }
-                }
-            }
-        })
-    }
-}
+					// Test that the users has the proper permissions to run the command.
+					if (sub.utils.hasPermissions(member, command.permissions)) {
+						// Run the command.
+						await command.exec(
+							message,
+							args,
+							message.channel,
+							member,
+							client,
+							config,
+							sub
+						);
+					} else {
+						// Throw an error if the command doesn't work
+						throw new InsufficientPermissionsError(
+							"CommandListener",
+							`Insufficient permissions to run command (${commandName} - ${member.user.tag}:${member.user.id})`,
+							message
+						);
+					}
+				}
+			}
+		});
+	},
+};

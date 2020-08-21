@@ -3,14 +3,14 @@
  * Interface file for the roles entry in the config
  */
 
-import { Role, RoleResolvable } from 'discord.js'
+import { Role, RoleResolvable } from "discord.js";
 
 export interface ConfigRoleInterface {
-    muted: RoleResolvable
-    verified: RoleResolvable
+	muted: RoleResolvable;
+	verified: RoleResolvable;
 }
 
 export interface LiveConfigRoleInterface {
-    muted?: Role
-    verified?: Role
+	muted?: Role;
+	verified?: Role;
 }
