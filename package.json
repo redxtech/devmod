@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
-    "lint": "NODE_OPTIONS=\"--no-warnings\" yarn xo --reporter compassion",
-    "lint:fix": "NODE_OPTIONS=\"--no-warnings\" yarn xo --fix --reporter compassion"
+    "lint": "NODE_OPTIONS=\"--no-warnings\" yarn eslint ./**/*.[tj]s --format compassion",
+    "lint:fix": "NODE_OPTIONS=\"--no-warnings\" yarn eslint ./**/*.[tj]s --fix --format compassion"
   },
   "dependencies": {
     "chalk": "^4.1.0",
