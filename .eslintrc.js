@@ -1,9 +1,19 @@
 module.exports = {
-	parser: "@typescript-eslint/parser",
+	root: true,
 	env: {
 		node: true,
-		es2020: true,
+		es2020: true
 	},
-	extends: ["xo/esnext", "xo-plugins/config/plugins"],
-	plugins: ["@typescript-eslint"],
-};
+	parser: '@typescript-eslint/parser',
+	parserOptions: {
+		tsconfigRootDir: __dirname,
+		project: './tsconfig.json',
+		warnOnUnsupportedTypeScriptVersion: false
+	},
+	plugins: ['@typescript-eslint'],
+	extends: [
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:@typescript-eslint/recommended-requiring-type-checking'
+	]
+}
