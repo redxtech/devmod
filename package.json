@@ -12,7 +12,8 @@
     "build": "tsc",
     "dev": "nodemon --exec ts-node ./src/main.ts --strict",
     "lint": "NODE_OPTIONS=\"--no-warnings\" yarn eslint ./**/*.[tj]s -f compassion",
-    "lint:fix": "NODE_OPTIONS=\"--no-warnings\" yarn eslint ./**/*.[tj]s --fix -f compassion"
+    "lint:fix": "yarn lint --fix",
+    "lint:pretty": "yarn lint -f pretty"
   },
   "dependencies": {
     "chalk": "^4.1.0",
@@ -29,6 +30,7 @@
     "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-with-typescript": "^18.0.2",
     "eslint-formatter-compassion": "^1.1.2",
+    "eslint-formatter-pretty": "^4.0.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-no-use-extend-native": "^0.5.0",
