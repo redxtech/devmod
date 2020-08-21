@@ -11,6 +11,7 @@ module.exports = {
 		"import/resolver": "typescript",
 	},
 	prettier: true,
+	reporter: "compassion",
 	extends: ["plugin:import/typescript"],
 	extensions: ["ts", "js"],
 	parser: "@typescript-eslint/parser",
